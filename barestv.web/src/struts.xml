@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="textos" />
+	
+	<package name="default" namespace="/" extends="struts-default">
+		
+		<action name="mostrarCrearProducto">
+			<result>crearproducto.jsp</result>
+		</action>
+		<action name="login">
+			<result>login.jsp</result>
+		</action>
+		<action name="logearse" class="actions.SessionCreateAction">
+			<result name="input">login.jsp</result>
+			<result name="success" type="chain">inicio</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="cerrarSesion" class="actions.SessionCloseAction">
+			<result type="chain">inicio</result>
+		</action>
+		<action name="registrarse" class="actions.AccountCreateAction">
+			<result name="input">login.jsp</result>
+			<result name="success">login.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="mostrarCuenta" class="actions.AccountRetrieveAction">
+			<result name="success">usuario.jsp</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="eliminarCuenta" class="actions.AccountDeleteAction">
+			<result name="success" type="chain">inicio</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+        <action name="comprarProducto" class="actions.PurchaseAddAction">
+        	<result name="login">login.jsp</result>
+            <result name="success" type="chain">mostrarProducto</result>
+            <result name="error">error.jsp</result>
+        </action>
+		<action name="actualizarCuenta" class="actions.AccountUpdateAction">
+			<result name="input" type="chain">mostrarCuenta</result>
+			<result name="success" type="chain">mostrarCuenta</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>	
+		<action name="crearProducto" class="actions.ProductCreateAction">
+			<result name="input">crearproducto.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="success" type="chain">mostrarCuenta</result>
+			<result name="fail">crearproducto.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="borrarProducto" class="actions.DeleteProductAction">
+			<result name="success" type="chain">mostrarCuenta</result>
+	        <result name="error">error.jsp</result>
+		</action>
+		<action name="mostrarEditarProducto" class="actions.ProductEditAction" method="rellenarProducto">
+			<result name="success">crearproducto.jsp</result>
+	        <result name="error">error.jsp</result>
+		</action>
+		<action name="editarProducto" class="actions.ProductEditAction">
+			<result name="input">crearproducto.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="success" type="chain">mostrarCuenta</result>
+			<result name="fail">crearproducto.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="mostrarProducto" class="actions.ProductRetrieveAction">
+			<result name="success">producto.jsp</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="likeAjuego" class="actions.ProductRetrieveAction" method="addLike">
+			<result name="login">login.jsp</result>
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="noLikeAJuego" class="actions.ProductRetrieveAction" method="removeLike">
+			<result name="login">login.jsp</result>
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="crearComentario" class="actions.ComentaryCreateAction">
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="borrarComentario" class="actions.ComentaryDeleteAction">
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="editComentario" class="actions.ComentaryEditAction">
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="inicio" class="actions.ProductsListAction">
+			<result name="success">lista.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="iniciob" class="actions.ProductListJsonAction">
+			<result name="success">lista.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="crearEtiqueta" class="actions.EtiqueteeCreateAction">
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="EliminarEtiqueta" class="actions.EtiqueteeDeleteAction">
+			<result name="success" type="chain">mostrarProducto</result>
+			<result name="fail">error.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="*">
+			<result>error.jsp</result>
+		</action>	
+	</package>
+		
+</struts>

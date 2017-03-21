@@ -1,0 +1,85 @@
+# Empty CSS file for your own CSS
+
+.button2 {
+    display: block;
+    width: 115px;
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    margin-top:10px;
+}
+.label {font-style:italic; }
+.errorLabel {font-style:italic; color:red; }
+.errorMessage {font-weight:bold; color:red; }
+.checkboxLabel {}
+.checkboxErrorLabel {color:red; }
+.required {color:red;}
+.tdLabel {text-align:right; vertical-align:top; }
+.s_tag .tag-area li {
+    float: left;
+    margin: 0 10px 8px 0;
+    border: 1px solid #8eb4ec;
+    border-radius: 20px;
+    padding: 0 10px;
+    position: relative;
+    height: 22px;
+    transition: all .3s;
+}
+.s_tag .btn-add {
+    float: left;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 1px solid #e5e9ef;
+    position: relative;
+    transition: all .3s;
+}
+.s_tag .btn-add .one {
+    left: 4px;
+    top: 10px;
+    width: 14px;
+    height: 2px;
+}
+.s_tag .btn-add .two {
+    left: 10px;
+    top: 4px;
+    width: 2px;
+    height: 14px;
+}
+
+.s_tag .btn-add span {
+    position: absolute;
+    background: #9ba3ab;
+    transition: all .3s;
+}
+.s_tag .btn-delete {
+    float: left;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 1px solid #e5e9ef;
+    position: relative;
+    transition: all .3s;
+}
+.s_tag .btn-delete .one {
+    left: 4px;
+    top: 10px;
+    width: 14px;
+    height: 2px;
+}
+.s_tag .btn-delete .two {
+    left: 10px;
+    top: 4px;
+    width: 2px;
+    height: 14px;
+}
+.s_tag .btn-delete span {
+    position: absolute;
+    background: #9ba3ab;
+    transition: all .3s;
+    transform: rotate(45deg)
+}
