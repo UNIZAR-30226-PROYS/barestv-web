@@ -1,1 +1,174 @@
-# Empty CSS file for your own CSS
+/*# Empty CSS file for your own CSS*/
+body {
+  color: #333;
+  font-family: sans-serif;
+  background: #fcfcfc;
+}
+
+.container-fluid {
+    max-width: 1200px;
+}
+h1, h2, h3, .modal-title {
+    color: #FF6F00;
+    border-bottom: 1px solid #ddd;
+    padding: 0.1em;  
+}
+/*
+.resaltado {
+  background: #774455;
+  color: #fff;
+  padding: 0.2em 0.5em;
+  border-radius: 2px;
+}
+
+.resaltado h1, .resaltado h2, .resaltado h3 {
+  color: #fff;
+  margin-top: 10px;
+}
+*/
+hr {
+  clear: both;
+}
+a, a:visited {
+    color: #FF6F00; /*dark*/
+}
+
+a:hover, a:active {
+    color: #FF9800; /*primario*/
+}
+
+label {
+  font-weight: normal;
+}
+.breadcrumb {
+  border-radius: 0;
+  background: none;
+}
+
+.breadcrumb>li+li:before {
+  content: "\027E9\00a0";
+}
+.btn-primary {
+  background-color: #26C6DA;
+  color: #fff !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus {
+  background-color: #aa0066;
+  border-color: #770044;
+}
+.btn:hover {
+  background-color: #23b1c3; 
+  color: #fff;
+
+}
+
+.btn {
+    border-radius: 3px;
+    background: #26c6da;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 1px 2px #ccc;
+}
+
+
+ul.nav li.active a {
+    color: #aa0066;
+}
+
+.navbar {
+    background: #FF6F00;
+    border: none;
+    border-radius: 0  0 3px 3px;
+    box-shadow: 0 2px 2px #ccc;
+}
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:focus, 
+.navbar-default .navbar-nav>.active>a:hover {
+    background-color: #FF9800;
+    border-bottom: 3px solid #26d6da;
+    padding-bottom: 12px;
+}
+.navbar-default .navbar-nav > li > a:focus, 
+.navbar-default .navbar-nav > li > a:hover {
+    background-color: #FF9800; 
+}
+.navbar-default .navbar-nav > li > a{
+    color: #fff !important;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+    background: #FF9800 !important;
+}
+
+.navbar-toggle {
+    border-color: #FFBD8B !important;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+.navbar-default .navbar-brand {
+    color: #fff !important;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #ddd;
+}
+.form-inline .input-group.btn{
+    vertical-align: bottom !important;
+    margin-top: 0.5em;
+    margin-right: -1em;  
+} 
+
+.form-control{
+    border: 1px solid #bbb;
+    border-radius: 2px;
+}
+
+.form-control:focus {
+    border-color: #FF9800;
+    outline: 0;
+    box-shadow: none;
+}
+
+img.avatar {
+    height: 60px;
+    width: 60px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid;
+}
+img.avatar-grande {
+    height: 120px;
+    width: 120px;
+    border: 2px solid;
+}
+
+.modal-content {
+  background: #fcfcfc;
+}
+
+.modal-title {
+  
+}
+
+/* Formulario de registro */
+
+.registro form button[type="submit"] {
+  width: 100%;
+}
+
+/* Actividad */
+
+.tipo {
+  font-weight: bold;
+}
+
+.compra .tipo{
+  color: #0a86ad;
+}
+
+.venta .tipo{
+  color: #04a707;
+}
