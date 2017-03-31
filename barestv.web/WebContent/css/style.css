@@ -54,25 +54,28 @@ label {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus {
-  background-color: #aa0066;
+  background-color: #23b1c3;
   border-color: #770044;
 }
-.btn:hover {
+.btn-default:hover, .btn-default:focus, .btn-default:active {
   background-color: #23b1c3; 
   color: #fff;
-
 }
 
 .btn {
     border-radius: 3px;
-    background: #26c6da;
     color: #fff;
     font-weight: bold;
     border: none;
     box-shadow: 0 1px 2px #ccc;
 }
 
-
+.btn-default {
+    background: #26c6da;
+}
+td.boton {
+    width: 5%;
+}
 ul.nav li.active a {
     color: #aa0066;
 }
@@ -132,43 +135,6 @@ ul.nav li.active a {
     box-shadow: none;
 }
 
-img.avatar {
-    height: 60px;
-    width: 60px;
-    background: #fff;
-    border-radius: 50%;
-    border: 1px solid;
-}
-img.avatar-grande {
-    height: 120px;
-    width: 120px;
-    border: 2px solid;
-}
-
 .modal-content {
   background: #fcfcfc;
-}
-
-.modal-title {
-  
-}
-
-/* Formulario de registro */
-
-.registro form button[type="submit"] {
-  width: 100%;
-}
-
-/* Actividad */
-
-.tipo {
-  font-weight: bold;
-}
-
-.compra .tipo{
-  color: #0a86ad;
-}
-
-.venta .tipo{
-  color: #04a707;
 }

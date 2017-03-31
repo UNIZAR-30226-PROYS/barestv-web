@@ -12,6 +12,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
 
   </head>
   <body>
@@ -54,35 +55,37 @@
 			<form role="form">
 				<div class="form-group">
 					 
-					<label for="exampleInputEmail1">
+					<label for="email">
 						Nombre evento
 					</label>
-					<input class="form-control" id="exampleInputEmail1" type="email">
+					<input class="form-control" id="email" name="email" type="email">
 				</div>
 				<div class="form-group">
 					 
-					<label for="exampleInputPassword1">
+					<label for="descripcion">
 						Descripcion
 					</label>
-					<textarea class="form-control" id="exampleInputPassword1"></textarea>
+					<textarea class="form-control" id="descripcion" name="descripcion"></textarea>
 				</div>
 				<div class="form-group">
 					 
-					<label for="exampleInputEmail1">
-						Fecha y hora
+					<label for="fecha">
+						Fecha
+					</label> y
+                                        <label for="hora">
+						hora
 					</label>
 					<br/>
-					<input class="form-control-inline" id="exampleInputEmail1" type="email">
-					<input class="form-control-inline" id="exampleInputEmail1" type="email">
-					-
-					<input class="form-control-inline" id="exampleInputEmail1" type="email">
+					<input class="form-control-inline" id="fecha" name="fecha" type="date"> 
+					<input class="form-control-inline" id="hora" name="hora-desde" type="time"> -
+					<input class="form-control-inline" id="hora" name="hora-hasta" type="time">
 				</div>
 				<div class="form-group">
 					 
-					<label for="exampleInputEmail1">
+					<label for="categoria">
 						Categoria
 					</label>
-					<select class="form-control" id="sel1">
+					<select class="form-control" id="categoria" name="categoria">
 						<option>Deporte</option>
 						<option>Noticia</option>
 						<option>Serie</option>
@@ -121,12 +124,12 @@
 						<small>Categoria: Deporte</small>
 						</blockquote>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-primary">
 							Modificar
 						</button>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-danger">
 							Eliminar
 						</button>
@@ -143,12 +146,12 @@
 						<small>Categoria: Deporte</small>
 						</blockquote>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-primary">
 							Modificar
 						</button>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-danger">
 							Eliminar
 						</button>
@@ -177,12 +180,12 @@
 						<small>Categoria: Deporte</small>
 						</blockquote>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-primary">
 							Modificar
 						</button>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-danger">
 							Eliminar
 						</button>
@@ -199,12 +202,12 @@
 						<small>Categoria: Deporte</small>
 						</blockquote>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-primary">
 							Modificar
 						</button>
 					</td>
-					<td>
+					<td class="boton">
 						<button type="button" class="btn btn-danger">
 							Eliminar
 						</button>
