@@ -25,8 +25,15 @@
 		</action>
 		
 		<!-- Paginas del usuario normal -->
-		<action name="getProgramacion">
-			<result>esta_programacion.jsp</result>
+		<action name="addEvento" class="actions.EventoCreateAction">
+			<result name="success" type="chain">getProgramacion</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="getProgramacion" class="actions.ProgramacionRetrieveAction">
+			<result name="success">esta_programacion.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
 		</action>
 		<action name="getEstablecimiento"  class="actions.EstablecimientoRetrieveAction">
 			<result name="success">esta_esta.jsp</result>

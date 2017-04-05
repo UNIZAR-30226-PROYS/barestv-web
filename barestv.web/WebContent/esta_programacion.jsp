@@ -11,45 +11,54 @@
 			<h3>
 				Añadir evento
 			</h3>
-			<form role="form">
+			<form role="form" method="post" action="<s:url action="addEvento"/>">
 				<div class="form-group">
 					 
-					<label for="email">
+					<label for="nombre">
 						Nombre evento
 					</label>
-					<input class="form-control" id="email" name="email" type="email">
+					<s:textfield cssClass="form-control" id="nombre" name="nombre" type="text" value="%{nombre}"/>
+					
 				</div>
 				<div class="form-group">
 					 
 					<label for="descripcion">
 						Descripcion
 					</label>
-					<textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+					<s:textarea cssClass="form-control" id="descripcion" name="descripcion" ></s:textarea>
+	
 				</div>
 				<div class="form-group">
 					 
-					<label for="fecha">
-						Fecha
-					</label> y
-                                        <label for="hora">
-						hora
+					<label for="fechainicio">
+						Fecha inicio  (DDMMYYYY) 
 					</label>
+					<label for="horainicio">
+						Hora inicio (hhmm)
+					</label>                     
 					<br/>
-					<input class="form-control-inline" id="fecha" name="fecha" type="date"> 
-					<input class="form-control-inline" id="hora" name="hora-desde" type="time"> -
-					<input class="form-control-inline" id="hora" name="hora-hasta" type="time">
+					<s:textfield cssclass="form-control-inline" id="fechainicio" name="fechainicio" type="number" title="fechainicio" value="%{fechainicio}"/> 
+					<s:textfield cssclass="form-control-inline" id="horainicio" name="horainicio" type="number" title="horainicio" value="%{horainicio}"/> 
+					
+					<br/>
+					<label for="fechafin">
+						Fecha fin  (DDMMYYYY) 
+					</label>
+					<label for="horafin">
+						Hora fin (hhmm)
+					</label>                     
+					<br/>
+					<s:textfield cssclass="form-control-inline" id="fechafin" name="fechafin" type="number" title="fechafin" value="%{fechafin}"/>
+					<s:textfield cssclass="form-control-inline" id="horafin" name="horafin" type="number" title="horafin" value="%{horafin}"/> 
+					
 				</div>
 				<div class="form-group">
 					 
 					<label for="categoria">
 						Categoria
 					</label>
-					<select class="form-control" id="categoria" name="categoria">
-						<option>Deporte</option>
-						<option>Noticia</option>
-						<option>Serie</option>
-						<option>Pelicula</option>
-					  </select>
+					<s:select list="categorias" cssclass="form-control" id="categoria" name="categoria" >
+					  </s:select>
 				</div>
 				<button type="submit" class="btn btn-default">
 					Guardar
@@ -63,10 +72,13 @@
 				Programacion
 			</h3>
 			
+			<s:iterator value="programacion" var="evento">
+			 <s:set var="fechainicio" value="#evento.inicio"/>	
+			 <s:set var="fechafin" value="#evento.fin"/>	
 			<table class="table">
 				<thead>
 				  <tr>
-					<th>24/03/2017</th>
+					<th><s:property value="#fechainicio.fe"/></th>
 					<th></th>
 					<th></th>
 				  </tr>
@@ -76,33 +88,11 @@
 					<td>
 						<blockquote>
 						<p>
-							Evento 1
+							<s:property value="#evento.nombre"/>
 						</p> 
-						<small>Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento.</small>
-						<small>Hora: 9:00 - 11:00</small>
-						<small>Categoria: Deporte</small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Modificar
-						</button>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-danger">
-							Eliminar
-						</button>
-					</td>
-				  </tr>
-				 <tr>
-					<td>
-						<blockquote>
-						<p>
-							Evento 2
-						</p> 
-						<small>Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento.</small>
-						<small>Hora: 9:00 - 11:00</small>
-						<small>Categoria: Deporte</small>
+						<small><s:property value="#evento.descripcion"/></small>
+						<small>Hora: <s:property value="#fechainicio.ho"/> - <s:property value="#fechafin.ho"/></small>
+						<small>Categoria: <s:property value="#evento.categoria"/></small>
 						</blockquote>
 					</td>
 					<td class="boton">
@@ -118,62 +108,8 @@
 				  </tr>
 				</tbody>
 			  </table>
-			  
-			<table class="table">
-				<thead>
-				  <tr>
-					<th>25/03/2017</th>
-					<th></th>
-					<th></th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr>
-					<td>
-						<blockquote>
-						<p>
-							Evento 1
-						</p> 
-						<small>Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento.</small>
-						<small>Hora: 9:00 - 11:00</small>
-						<small>Categoria: Deporte</small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Modificar
-						</button>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-danger">
-							Eliminar
-						</button>
-					</td>
-				  </tr>
-				 <tr>
-					<td>
-						<blockquote>
-						<p>
-							Evento 2
-						</p> 
-						<small>Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento. Ejemplo de descripcion para el evento.</small>
-						<small>Hora: 9:00 - 11:00</small>
-						<small>Categoria: Deporte</small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Modificar
-						</button>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-danger">
-							Eliminar
-						</button>
-					</td>
-				  </tr>
-				</tbody>
-			  </table>
+			 </s:iterator> 
+			
 		</div>
 	</div>
 <jsp:include page="WEB-INF/jsp/piePagina.jsp"></jsp:include>

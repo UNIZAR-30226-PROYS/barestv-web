@@ -30,4 +30,13 @@ public class FactoriaDAO {
 		}
 		
 	}
+	
+	public static ProgramacionInterfazDAO getProgramacionDAO (String basededatos) throws Exception{
+		if ("prueba".equals(basededatos)){
+			return new ProgramacionDAOPrueba();
+		}else {
+			return null;
+		}
+		
+	}
 }

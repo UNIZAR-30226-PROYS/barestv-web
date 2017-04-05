@@ -5,33 +5,26 @@ public class Evento {
 	private String nombre;	
 	private String descripcion;
 	
-	private int dia;
-	private int mes;
-	private int anyo;
-	private int hora;
-	private int minuto;
+	/* Fecha */
+	private Fecha inicio;
+	private Fecha fin;
 	
 	private String categoria;
 	
 	public Evento(){
 		nombre = "";
 		descripcion ="";
-		dia = 0;
-		mes = 0;
-		anyo = 0;
-		hora = 0;
-		minuto = 0;
+		inicio = new Fecha();
+		fin = new Fecha();
 		categoria = "";
 	}
-	public Evento(String nombre, String descripcion, int dia, int mes,
-			int anyo, int hora, int minuto, String categoria) {
+	
+	public Evento(String nombre, String descripcion, Fecha inicio, Fecha fin,
+			String categoria) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.dia = dia;
-		this.mes = mes;
-		this.anyo = anyo;
-		this.hora = hora;
-		this.minuto = minuto;
+		this.inicio = inicio;
+		this.fin = fin;
 		this.categoria = categoria;
 	}
 
@@ -50,45 +43,21 @@ public class Evento {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public int getDia() {
-		return dia;
+	
+	public Fecha getInicio() {
+		return inicio;
 	}
 
-	public void setDia(int dia) {
-		this.dia = dia;
+	public void setInicio(Fecha inicio) {
+		this.inicio = inicio;
 	}
 
-	public int getMes() {
-		return mes;
+	public Fecha getFin() {
+		return fin;
 	}
 
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
-
-	public int getAnyo() {
-		return anyo;
-	}
-
-	public void setAnyo(int anyo) {
-		this.anyo = anyo;
-	}
-
-	public int getHora() {
-		return hora;
-	}
-
-	public void setHora(int hora) {
-		this.hora = hora;
-	}
-
-	public int getMinuto() {
-		return minuto;
-	}
-
-	public void setMinuto(int minuto) {
-		this.minuto = minuto;
+	public void setFin(Fecha fin) {
+		this.fin = fin;
 	}
 
 	public String getCategoria() {

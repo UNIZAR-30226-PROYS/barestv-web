@@ -9,21 +9,35 @@ import dao.*;
 
 public class EventoDAOPrueba implements EventoInterfazDAO {
 
+	static ArrayList<Evento> eventos;
+	
 	@Override
-	public ArrayList<Evento> getAll(String establecimiento, int idEvento)
+	public ArrayList<Evento> getAll(String establecimiento)
 			throws Exception {
 		// TODO Auto-generated method stub
-		ArrayList<Evento> lista = new ArrayList<Evento>();
-		lista.add(new Evento("NombreEvento","DescripcionEvento",1,1,2017,21,50,"Deporte"));
-		lista.add(new Evento("NombreEvento1","DescripcionEvento1",1,1,2017,21,50,"Deporte1"));
-		lista.add(new Evento("NombreEvento2","DescripcionEvento2",1,1,2017,21,50,"Deporte2"));
-		return lista;
+		return eventos;
 	}
 
 	@Override
 	public Evento get(String establecimiento, int idevento) throws Exception {
 		// TODO Auto-generated method stub
-		return new Evento("NombreEvento","DescripcionEvento",1,1,2017,21,50,"Deporte");
+		if(eventos != null){
+			return eventos.get(idevento);
+		}else{
+			return null;
+		}
+	
+	}
+
+	@Override
+	public void add(String establecimiento, Evento e) throws Exception {
+		// TODO Auto-generated method stub
+		if (eventos != null){
+			eventos.add(e);
+		}else{
+			eventos = new ArrayList<Evento>();
+		}
+		
 	}
 
 
