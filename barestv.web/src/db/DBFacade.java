@@ -14,7 +14,7 @@ import com.mysql.jdbc.Statement;
 
 public class DBFacade {
 
-	private static final String DATABASE = "gdosteamio";
+	private static final String DATABASE = "heliohost";
 	private Connection con = null;
 	private DataSource source;
 	private PreparedStatement prepS;

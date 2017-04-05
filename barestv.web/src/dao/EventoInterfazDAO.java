@@ -11,10 +11,8 @@ public interface EventoInterfazDAO {
 	public ArrayList<Evento> getAll(String establecimiento) throws Exception;
 	
 	//Obtener uno
-	public Evento get(String establecimiento,int idevento) throws Exception;
+	public Evento get(String establecimiento,String tituloEvento) throws Exception;
 	
 	//Añadir un evento
-	public void add(String establecimiento,Evento e) throws Exception;
-
-	
+	public boolean add(String establecimiento, Evento e) throws Exception;
 }

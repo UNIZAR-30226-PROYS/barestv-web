@@ -19,26 +19,19 @@ public class EventoDAOPrueba implements EventoInterfazDAO {
 	}
 
 	@Override
-	public Evento get(String establecimiento, int idevento) throws Exception {
+	public Evento get(String establecimiento, String tituloEvento)
+			throws Exception {
 		// TODO Auto-generated method stub
-		if(eventos != null){
-			return eventos.get(idevento);
-		}else{
-			return null;
-		}
-	
+		return null;
 	}
 
 	@Override
-	public void add(String establecimiento, Evento e) throws Exception {
+	public boolean add(String establecimiento, Evento e) throws Exception {
 		// TODO Auto-generated method stub
-		if (eventos != null){
-			eventos.add(e);
-		}else{
-			eventos = new ArrayList<Evento>();
-		}
-		
+		return false;
 	}
+
+	
 
 
 	

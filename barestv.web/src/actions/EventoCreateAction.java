@@ -61,7 +61,7 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 			if (u.isEsAdmin()) return "error";	
 			
 			Evento e = new Evento(nombre, descripcion, new Fecha(fechainicio,horainicio), new Fecha(fechafin,horafin), categoria);
-			FactoriaDAO.getEventoDAO("prueba").add(u.getEstablecimiento(), e);
+			FactoriaDAO.getEventoDAO("mysql").add(u.getEstablecimiento(), e);
 			return "success";
 				
 		}catch(Exception e){

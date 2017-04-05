@@ -10,6 +10,7 @@ import beans.*;
 import dao.*;
 import db.DBFacade;
 import factoria.FactoriaDAO;
+
 import java.util.Date;
 
 
@@ -159,6 +160,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		}
 		return esCorrecto;		
 	}
+
 
 
 	
