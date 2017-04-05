@@ -1,126 +1,66 @@
 package beans;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-
-
-
-
-public class Usuario {
-    
-    private int idUsuario;
-	private String correo;	//Maximo 100
-	private String estado;	//maximo 20
-	private String nick;	//maximo 20
-	private String contrasenya; //maximo 100
-	private String apellido; //maximo 100
-	private String nombre;	//maximo 100
-	private Date fecha;
-	private String imagen;
+public class Usuario { 
+	private String usuario;	
+	private String password;
+	private String establecimiento;
+	private boolean esAdmin;
 	
-	//EXtras
-	private int valoracion;
-
-	public Usuario(){
-	   
-	}
-
-	public Usuario(int idUsuario, String correo, String estado, String nick,
-			String contrasenya, String apellido, String nombre, Date fecha, String imagen) {
-		this.idUsuario = idUsuario;
-		this.correo = correo;
-		this.estado = estado;
-		this.nick = nick;
-		this.contrasenya = contrasenya;
-		this.apellido = apellido;
-		this.nombre = nombre;
-		this.fecha = fecha;
-		this.imagen = imagen;
+	public Usuario (){
+		usuario = "";
+		password ="";
+		establecimiento ="";
+		esAdmin = false;
 	}
 	
-	public String getImagen() {
-		return imagen;
+	/**
+	 * Crea un Usuario tipo normal
+	 * @param usuario
+	 * @param password
+	 * @param establecimiento
+	 */
+	public Usuario(String usuario, String password, String establecimiento) {
+		this.usuario = usuario;
+		this.password = password;
+		this.establecimiento = establecimiento;
+		esAdmin = false;
 	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	/**
+	 * Crea un Usuario tipo admin
+	 * @param usuario
+	 * @param password
+	 */
+	public Usuario(String usuario, String password) {
+		this.usuario = usuario;
+		this.password = password;
+		esAdmin = true;
 	}
-
-	public int getValoracion() {
-		return valoracion;
+	public String getUsuario() {
+		return usuario;
 	}
-
-	public void setValoracion(int valoracion) {
-		this.valoracion = valoracion;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
-
-	public int getIdUsuario() {
-		return idUsuario;
+	public String getPassword() {
+		return password;
 	}
-	
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-	public String getCorreo() {
-		return correo;
+	public String getEstablecimiento() {
+		return establecimiento;
 	}
-	
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-	
-	public String getEstado() {
-		return estado;
-	}
-	
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	
-	public String getNick() {
-		return nick;
-	}
-	
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-	
-	public String getContrasenya() {
-		return contrasenya;
-	}
-	
-	public void setContrasenya(String contrasenya) {
-		this.contrasenya = contrasenya;
-	}
-	
-	public String getApellido() {
-		return apellido;
-	}
-	
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	public Date getFecha() {
-		return fecha;
-	}
-	
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setEstablecimiento(String establecimiento) {
+		this.establecimiento = establecimiento;
 	}
 
+	public boolean isEsAdmin() {
+		return esAdmin;
+	}
 
+	public void setEsAdmin(boolean esAdmin) {
+		this.esAdmin = esAdmin;
+	}
 	
-	 
-
+	
 }

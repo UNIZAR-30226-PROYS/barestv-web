@@ -1,12 +1,7 @@
 package actions;
 
-import beans.Usuario;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-import factoria.FactoriaDAO;
-
-import java.io.PrintStream;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -18,6 +13,10 @@ import org.apache.struts2.interceptor.SessionAware;
 public class SessionCloseAction extends ActionSupport implements SessionAware {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7652208226990345411L;
 	private Map<String, Object> session;
 
 	public String execute() throws Exception {

@@ -18,6 +18,7 @@ public class SolrControl {
 		}
 		
 	}
+	@SuppressWarnings("deprecation")
 	public static String obtenerJson(String palabrasClave) throws IOException{
 		return getUrlSource("http://localhost:8983/solr/productos/select?q="+URLEncoder.encode(palabrasClave)+"&wt=json&qf=nombre_name&qf=descripcionCorta_name&qf=descripcionLarga_name&defType=edismax&omitHeader=true");
 		

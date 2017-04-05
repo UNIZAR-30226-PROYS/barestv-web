@@ -1,60 +1,30 @@
 package factoria;
 
-import implementacionMysql.*;
+
+import implementacionPrueba.*;
 import dao.*;
 
 public class FactoriaDAO {
-	public static ComentarioInterfazDAO getComentarioDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new ComentarioDAOMysql();
-		}else {
-			return null;
-		}
-		
-	}
-	public static CompraInterfazDAO getCompraDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new CompraDAOMysql();
-		}else {
-			return null;
-		}
-		
-	}
-	public static EtiquetaInterfazDAO getEtiquetaDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new EtiquetaDAOMysql();
-		}else {
-			return null;
-		}
-		
-	}
-	public static ImagenInterfazDAO getImagenDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new ImagenDAOMysql();
-		}else {
-			return null;
-		}
-		
-	}
-	public static ProductoInterfazDAO getProductoDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new ProductoDAOMysql();
+	public static EstablecimientoInterfazDAO getEstablecimientoDAO (String basededatos) throws Exception{
+		if ("prueba".equals(basededatos)){
+			return new EstablecimientoDAOPrueba();
 		}else {
 			return null;
 		}
 		
 	}
 	public static UsuarioInterfazDAO getUsuarioDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new UsuarioDAOMysql();
+		if ("prueba".equals(basededatos)){
+			return new UsuarioDAOPrueba();
 		}else {
 			return null;
 		}
 		
 	}
-	public static HistorialInterfazDAO getHistorialDAO (String basededatos) throws Exception{
-		if ("MySql".equals(basededatos)){
-			return new HistorialDAOMysql();
+	
+	public static EventoInterfazDAO getEventoDAO (String basededatos) throws Exception{
+		if ("prueba".equals(basededatos)){
+			return new EventoDAOPrueba();
 		}else {
 			return null;
 		}
