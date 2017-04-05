@@ -50,6 +50,15 @@ public class Fecha {
 	public String getHo() {
 		return ho;
 	}
-
+        
+        public String toMySQL() {
+                int anyo = (fecha%10000);
+		int mes = ((fecha/10000)%100);
+		int dia =(fecha/1000000);
+		int minutos = (hora%100);
+		int horas = (hora/100);
+                return String.format("%04d-%02d-%02d %02d:%02d:00", 
+                                    anyo, mes, dia, horas, minutos);
+        }
 	
 }

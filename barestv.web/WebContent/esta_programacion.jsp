@@ -37,8 +37,8 @@
 						Hora inicio (hhmm)
 					</label>                     
 					<br/>
-					<s:textfield cssclass="form-control-inline" id="fechainicio" name="fechainicio" type="number" title="fechainicio" value="%{fechainicio}"/> 
-					<s:textfield cssclass="form-control-inline" id="horainicio" name="horainicio" type="number" title="horainicio" value="%{horainicio}"/> 
+					<s:textfield cssclass="form-control-inline" id="fechainicio" name="fechainicio" type="date" title="fechainicio" value="%{fechainicio}"/> 
+					<s:textfield cssclass="form-control-inline" id="horainicio" name="horainicio" type="time" title="horainicio" value="%{horainicio}"/> 
 					
 					<br/>
 					<label for="fechafin">
@@ -48,8 +48,8 @@
 						Hora fin (hhmm)
 					</label>                     
 					<br/>
-					<s:textfield cssclass="form-control-inline" id="fechafin" name="fechafin" type="number" title="fechafin" value="%{fechafin}"/>
-					<s:textfield cssclass="form-control-inline" id="horafin" name="horafin" type="number" title="horafin" value="%{horafin}"/> 
+					<s:textfield cssclass="form-control-inline" id="fechafin" name="fechafin" type="date" title="fechafin" value="%{fechafin}"/>
+					<s:textfield cssclass="form-control-inline" id="horafin" name="horafin" type="time" title="horafin" value="%{horafin}"/> 
 					
 				</div>
 				<div class="form-group">
