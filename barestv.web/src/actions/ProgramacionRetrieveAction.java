@@ -42,7 +42,7 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 			categorias.add("Musica");
 			categorias.add("Cine");
 			categorias.add("Series");
-			programacion = FactoriaDAO.getEventoDAO("prueba").getAll(u.getEstablecimiento());
+			programacion = FactoriaDAO.getEventoDAO("mysql").getAll(u.getEstablecimiento());
 			
 			return "success";
 				

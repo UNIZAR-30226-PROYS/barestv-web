@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import beans.*;
 import dao.*;
@@ -36,22 +38,29 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select * from programa where bar in (select nickbar from bar where nombre = "+establecimiento+");"; // bar es un acronimo sacarlo de la tabla bar
+			String sql =  "select * from programa where bar like \""+establecimiento+"\";"; // bar es un acronimo sacarlo de la tabla bar
 			System.out.println(sql);
 			ResultSet rs = db.ejecutarConsulta(sql);
 			eventos = new ArrayList<Evento>();
 			
 			while (rs.next()){
 				//SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-				Date fechainicio = rs.getDate("inicio");
-				Date fechafin = rs.getDate("fin");
+				Date fechainicio = rs.getTimestamp("inicio");
+				Date fechafin = rs.getTimestamp("fin");
                                 
-                                System.err.println("FI:" + fechainicio);
-                                
-				int fini = Integer.valueOf(fechainicio.getDay()+""+fechainicio.getMonth()+""+fechainicio.getYear());
-				int ffin = Integer.valueOf(fechafin.getDay()+""+fechafin.getMonth()+""+fechafin.getYear());
-				int hini = Integer.valueOf(fechainicio.getHours()+""+fechainicio.getMinutes());
-				int hfin = Integer.valueOf(fechafin.getHours()+""+fechafin.getMinutes());
+				Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
+				calendar.setTime(fechainicio);   // assigns calendar to given date 
+				
+				String mes =  ((calendar.get(Calendar.MONTH)+1) < 10 ) ? ("0"+(calendar.get(Calendar.MONTH)+1)) : ""+(calendar.get(Calendar.MONTH)+1) ;
+				
+				int fini = Integer.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+""+mes+""+(calendar.get(Calendar.YEAR)));
+				String minu = (calendar.get(Calendar.MINUTE) < 10 ) ? ("0"+calendar.get(Calendar.MINUTE)) : ""+(calendar.get(Calendar.MINUTE)) ;
+				int hini = Integer.valueOf(calendar.get(Calendar.HOUR_OF_DAY)+""+minu);
+				calendar.setTime(fechafin);
+				mes =  ((calendar.get(Calendar.MONTH)+1) < 10 ) ? ("0"+(calendar.get(Calendar.MONTH)+1)) : ""+(calendar.get(Calendar.MONTH)+1) ;
+				minu = (calendar.get(Calendar.MINUTE) < 10 ) ? ("0"+calendar.get(Calendar.MINUTE)) : ""+(calendar.get(Calendar.MINUTE)) ;
+				int ffin = Integer.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+""+mes+""+(calendar.get(Calendar.YEAR)));
+				int hfin = Integer.valueOf(calendar.get(Calendar.HOUR_OF_DAY)+""+minu);
 				
 				Evento e= new Evento(
 						//nombre,desc, fechaini,fechafin,categoria
@@ -85,8 +94,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select * from programa where bar in (select nickbar from bar where nombre = "+establecimiento
-                                +") and titulo = " + tituloEvento + ";"; // bar es un acronimo sacarlo de la tabla bar
+			String sql =  "select * from programa where bar like \""+establecimiento+"\" and titulo like "+ tituloEvento +";"; // bar es un acronimo sacarlo de la tabla bar
 			System.out.println(sql);
 			ResultSet rs = db.ejecutarConsulta(sql);
 			

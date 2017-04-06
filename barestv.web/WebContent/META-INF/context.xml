@@ -27,7 +27,7 @@
 	<Resource name="heliohost"
 	 auth="Container" type="javax.sql.DataSource" 
 	 maxActive="20" maxIdle="10" maxWait="5000" 
-	 username="barestv_admin" password="123456" 
+	 username="barestv_dani" password="123456" 
 	 driverClassName="com.mysql.jdbc.Driver" 
 	 url="jdbc:mysql://johnny.heliohost.org:3306/barestv_mysql"/>
 	   
