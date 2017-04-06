@@ -43,25 +43,16 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			ResultSet rs = db.ejecutarConsulta(sql);
 			eventos = new ArrayList<Evento>();
 			
-			while (rs.next()){
-				//SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-				Date fechainicio = rs.getTimestamp("inicio");
-				Date fechafin = rs.getTimestamp("fin");
-                                
-				Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
-				calendar.setTime(fechainicio);   // assigns calendar to given date 
-				
-				String mes =  ((calendar.get(Calendar.MONTH)+1) < 10 ) ? ("0"+(calendar.get(Calendar.MONTH)+1)) : ""+(calendar.get(Calendar.MONTH)+1) ;
-				
-				int fini = Integer.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+""+mes+""+(calendar.get(Calendar.YEAR)));
-				String minu = (calendar.get(Calendar.MINUTE) < 10 ) ? ("0"+calendar.get(Calendar.MINUTE)) : ""+(calendar.get(Calendar.MINUTE)) ;
-				int hini = Integer.valueOf(calendar.get(Calendar.HOUR_OF_DAY)+""+minu);
-				calendar.setTime(fechafin);
-				mes =  ((calendar.get(Calendar.MONTH)+1) < 10 ) ? ("0"+(calendar.get(Calendar.MONTH)+1)) : ""+(calendar.get(Calendar.MONTH)+1) ;
-				minu = (calendar.get(Calendar.MINUTE) < 10 ) ? ("0"+calendar.get(Calendar.MINUTE)) : ""+(calendar.get(Calendar.MINUTE)) ;
-				int ffin = Integer.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+""+mes+""+(calendar.get(Calendar.YEAR)));
-				int hfin = Integer.valueOf(calendar.get(Calendar.HOUR_OF_DAY)+""+minu);
-				
+
+            SimpleDateFormat fecha = new SimpleDateFormat("ddMMyyyy");
+            SimpleDateFormat hora = new SimpleDateFormat("HHmm");
+            
+			while (rs.next()){                              
+				int fini = Integer.valueOf(fecha.format(rs.getDate("inicio")));
+				int ffin = Integer.valueOf(fecha.format(rs.getDate("fin")));
+				int hini = Integer.valueOf(hora.format(rs.getTime("inicio")));
+				int hfin = Integer.valueOf(hora.format(rs.getTime("fin")));			
+			                    
 				Evento e= new Evento(
 						//nombre,desc, fechaini,fechafin,categoria
 						rs.getString("titulo"),rs.getString("descr"),new Fecha(fini,hini),new Fecha(ffin,hfin),rs.getString("cat")
@@ -69,7 +60,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			
 				
 				eventos.add(e);
-		
+					
 				
 			}
 		}catch (Exception e){
