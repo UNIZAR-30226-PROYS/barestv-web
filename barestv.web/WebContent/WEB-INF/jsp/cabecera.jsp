@@ -13,7 +13,7 @@
 <title>${param.title}</title>
 
 <meta name="description"
-	content="Source code generated using layoutit.com">
+	content="${param.title}. Interfaz para administradores de BaresTV.">
 <meta name="author" content="LayoutIt!">
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
