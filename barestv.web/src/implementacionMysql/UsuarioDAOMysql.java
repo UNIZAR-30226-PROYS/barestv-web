@@ -1,27 +1,47 @@
 package implementacionMysql;
 
-
 import implementacionPrueba.*;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import beans.*;
 import dao.*;
-
+import db.DBFacade;
 
 public class UsuarioDAOMysql implements UsuarioInterfazDAO {
+
+	private DBFacade db = null;
 
 	@Override
 	public Usuario get(String usuario) throws Exception {
 		// TODO Auto-generated method stub
-                
-		if (usuario.equals("usuario")){
-			return new Usuario("usuario","password","usuario");
 
-		}else if(usuario.equals("admin")){
-			return new Usuario("admin","password");
-		}else{
-			return null;
+		ArrayList<Usuario> usuarios = null;
+
+		try {
+
+			db.abrirConexion();
+			String sql = "select * from usuario where nick like \"" + usuario + "\";";
+			System.out.println(sql);
+			ResultSet rs = db.ejecutarConsulta(sql);
+			usuarios = new ArrayList<Usuario>();
+
+			if (rs.next()) {
+
+			}
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				db.cerrarConexion();
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexión");
+			}
 		}
+		return null;
+
 	}
-
-
 
 }
