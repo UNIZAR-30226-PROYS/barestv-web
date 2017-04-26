@@ -5,7 +5,10 @@ package actions;
 import beans.*;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import configuracion.C;
 import factoria.FactoriaDAO;
+
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -23,7 +26,7 @@ public class EstablecimientoRetrieveAction extends ActionSupport implements Sess
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Establecimiento establecimiento;
+	private Establecimiento est;
 	private Map<String, Object> session;
 
 	
@@ -33,7 +36,7 @@ public class EstablecimientoRetrieveAction extends ActionSupport implements Sess
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
 			if (u.isEsAdmin()) return "error";	
-			establecimiento = FactoriaDAO.getEstablecimientoDAO("prueba").get(u.getEstablecimiento());
+			est = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).get(u.getUsuario());
 			return "success";
 				
 		}catch(Exception e){
@@ -42,13 +45,13 @@ public class EstablecimientoRetrieveAction extends ActionSupport implements Sess
 	}
 	
 	
-	public Establecimiento getEstablecimiento() {
-		return establecimiento;
+	public Establecimiento getEst() {
+		return est;
 	}
 
 
-	public void setEstablecimiento(Establecimiento establecimiento) {
-		this.establecimiento = establecimiento;
+	public void setEst(Establecimiento est) {
+		this.est = est;
 	}
 
 

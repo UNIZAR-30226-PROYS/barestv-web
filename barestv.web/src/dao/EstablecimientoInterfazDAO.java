@@ -12,9 +12,9 @@ public interface EstablecimientoInterfazDAO {
 	public Establecimiento get(String usuario) throws Exception;
 
 	//Edicion y eliminacion
-	//public Boolean edit(Usuario usuario) throws Exception;
+	public Boolean edit(Establecimiento  e) throws Exception;
 	//public Boolean remove(Usuario usuario) throws Exception;
-	//public Boolean add(Usuario usuario)throws Exception;
+	public Boolean add(Establecimiento  e)throws Exception;
 
 	
 }

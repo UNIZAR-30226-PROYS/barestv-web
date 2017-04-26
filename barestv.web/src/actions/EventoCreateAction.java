@@ -6,6 +6,7 @@ import beans.*;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import configuracion.C;
 import factoria.FactoriaDAO;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 			addFieldError("categoria", getText("errors.vacio"));
 			hayErrores = true;
 		}
-	
+		
 		if (hayErrores){
 			addActionError(getText("errors.login"));
 		}
@@ -61,7 +62,7 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 			if (u.isEsAdmin()) return "error";	
 			
 			Evento e = new Evento(nombre, descripcion, new Fecha(fechainicio,horainicio), new Fecha(fechafin,horafin), categoria);
-			FactoriaDAO.getEventoDAO("mysql").add(u.getEstablecimiento(), e);
+			FactoriaDAO.getEventoDAO(C.baseDatos).add(u.getUsuario(), e);
 			return "success";
 				
 		}catch(Exception e){

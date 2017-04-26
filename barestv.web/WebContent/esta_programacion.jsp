@@ -72,44 +72,49 @@
 				Programacion
 			</h3>
 			
-			<s:iterator value="programacion" var="evento">
-			 <s:set var="fechainicio" value="#evento.inicio"/>	
-			 <s:set var="fechafin" value="#evento.fin"/>	
-			<table class="table">
-				<thead>
-				  <tr>
-					<th><s:property value="#fechainicio.fe"/></th>
-					<th></th>
-					<th></th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr>
-					<td>
-						<blockquote>
-						<p>
-							<s:property value="#evento.nombre"/>
-						</p> 
-						<small><s:property value="#evento.descripcion"/></small>
-						<small>Hora: <s:property value="#fechainicio.ho"/> - <s:property value="#fechafin.ho"/></small>
-						<small>Categoria: <s:property value="#evento.categoria"/></small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Modificar
-						</button>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-danger">
-							Eliminar
-						</button>
-					</td>
-				  </tr>
+			<s:iterator value="programacion">
+				<table class="table">
+						<thead>
+						  <tr>
+							<th><s:property value="key"/></th>
+							<th></th>
+							<th></th>
+						  </tr>
+						</thead>
+						<tbody>
+				<s:iterator value="value" var="evento">
+					<s:set var="fechainicio" value="#evento.inicio"/>	
+					<s:set var="fechafin" value="#evento.fin"/>	
+				
+				
+					
+						  <tr>
+							<td>
+								<blockquote>
+								<p>
+									<s:property value="#evento.nombre"/>
+								</p> 
+								<small><s:property value="#evento.descripcion"/></small>
+								<small>Categoria: <s:property value="#evento.categoria"/></small>
+								</blockquote>
+							</td>
+							<td class="boton">
+								<button type="button" class="btn btn-primary">
+									Modificar
+								</button>
+							</td>
+							<td class="boton">
+								<button type="button" class="btn btn-danger">
+									Eliminar
+								</button>
+							</td>
+						  </tr>
+						
+				
+				</s:iterator> 
 				</tbody>
-			  </table>
-			 </s:iterator> 
-			
+				</table>
+			</s:iterator> 
 		</div>
 	</div>
 <jsp:include page="WEB-INF/jsp/piePagina.jsp"></jsp:include>

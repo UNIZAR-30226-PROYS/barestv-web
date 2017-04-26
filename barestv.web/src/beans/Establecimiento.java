@@ -1,55 +1,159 @@
 package beans;
 
 public class Establecimiento {
-    
+
+    private String nickbar;
 	private String nombre;	
-	private String ubicacion;	
-	private String descripcion; 
-	private String foto; 
+	private String descrbar;
+	private boolean activado;
+	private double lat;
+	private double lng;
+	private String direccion; 
+	private String urlimagen; 
 	
+
 	public Establecimiento(){
 	   
 	}
 	
-	public Establecimiento(String nombre, String ubicacion, String descripcion,
-			String foto) {
+	
+	/**
+	 * 
+	 * @param nickbar
+	 * @param nombre
+	 * @param descrbar
+	 * @param activado
+	 * @param lat
+	 * @param lng
+	 * @param direccion
+	 * @param urlimagen
+	 */
+	public Establecimiento(String nickbar, String nombre, String descrbar,
+			boolean activado, double lat, double lng, String direccion,
+			String urlimagen) {
+		this.nickbar = nickbar;
 		this.nombre = nombre;
-		this.ubicacion = ubicacion;
-		this.descripcion = descripcion;
-		this.foto = foto;
+		this.descrbar = descrbar;
+		this.activado = activado;
+		this.lat = lat;
+		this.lng = lng;
+		this.direccion = direccion;
+		this.urlimagen = urlimagen;
 	}
 
+	/**
+	 * @return the nickbar
+	 */
+	public String getNickbar() {
+		return nickbar;
+	}
+
+	/**
+	 * @param nickbar the nickbar to set
+	 */
+	public void setNickbar(String nickbar) {
+		this.nickbar = nickbar;
+	}
+
+	/**
+	 * @return the nombre
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 
+	/**
+	 * @param nombre the nombre to set
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public String getUbicacion() {
-		return ubicacion;
+	/**
+	 * @return the descrbar
+	 */
+	public String getDescrbar() {
+		return descrbar;
 	}
 
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
+	/**
+	 * @param descrbar the descrbar to set
+	 */
+	public void setDescrbar(String descrbar) {
+		this.descrbar = descrbar;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	/**
+	 * @return the activado
+	 */
+	public boolean isActivado() {
+		return activado;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	/**
+	 * @param activado the activado to set
+	 */
+	public void setActivado(boolean activado) {
+		this.activado = activado;
 	}
 
-	public String getFoto() {
-		return foto;
+	/**
+	 * @return the lat
+	 */
+	public double getLat() {
+		return lat;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	/**
+	 * @param lat the lat to set
+	 */
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
+	/**
+	 * @return the lng
+	 */
+	public double getLng() {
+		return lng;
+	}
+
+	/**
+	 * @param lng the lng to set
+	 */
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
+	/**
+	 * @return the direccion
+	 */
+	public String getDireccion() {
+		return direccion;
+	}
+
+	/**
+	 * @param direccion the direccion to set
+	 */
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	/**
+	 * @return the urlimagen
+	 */
+	public String getUrlimagen() {
+		return urlimagen;
+	}
+
+	/**
+	 * @param urlimagen the urlimagen to set
+	 */
+	public void setUrlimagen(String urlimagen) {
+		this.urlimagen = urlimagen;
+	}
+	
+	
+	
 	
 }

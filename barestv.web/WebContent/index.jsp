@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-sm-6 col-md-4 col-md-offset-2">
 		<h3>Login</h3>
-		<form role="form" method="post" action="<s:url action="logearse"/>">
+		<form role="form" method="post" action="<s:url action="logearse"/>" onsubmit="cript()">
 			<div class="form-group">
 				<label for="usuario">Usuario</label> 
 				<s:textfield cssClass="form-control" id="usuario" name="usuario" value="%{usuario}"/>
@@ -17,33 +17,29 @@
 			
 			<div class="form-group">
 				<label for="password">Contraseña</label>
-				<s:textfield cssClass="form-control" id="password" name="password" type="password" value="%{password}"/>
+				<s:textfield cssClass="form-control" id="password" name="password" type="password" value=""/>
 			</div>
 			<button type="submit" class="btn btn-default center-block">Entrar</button>
 		</form>
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<h3>Registrar</h3>
-		<form role="form" method="post" action="<s:url action="logearse"/>">
+		<form role="form" method="post" action="<s:url action="addUser"/>" onsubmit="cript()">
 			<div class="form-group">
 				<label for="usuario1">Usuario</label>
-				<s:textfield cssClass="form-control" id="usuario1" name="usuario1" type="text" value="%{usuario1}"/>
+				<s:textfield cssClass="form-control" id="usuario1" name="usr.usuario" type="text" value="%{usr.usuario}"/>
 			</div>
 			
 			<div class="form-group">
 				<label for="password1">Contraseña</label>
-				<s:textfield cssClass="form-control" id="password1" name="password1" type="password" value="%{password1}"/>
+				<s:textfield cssClass="form-control" id="password1" name="usr.password" type="password" value=""/>
 			</div>
 			
 			<div class="form-group">
 				<label for="password2">Repetir contraseña</label>
-				<s:textfield cssClass="form-control" id="password2" name="password2" type="password" value="%{password2}"/>
+				<s:textfield cssClass="form-control" id="password2" name="password1" type="password" value=""/>
 			</div>
 			
-			<div class="form-group">
-				<label for="establecimiento">Establecimiento</label>
-				<s:textfield cssClass="form-control" id="establecimiento" name="establecimiento" type="text" value="%{establecimiento}"/>
-			</div>
 			<button type="submit" class="btn btn-default center-block">Registrar</button>
 		</form>
 	</div>
@@ -62,7 +58,7 @@
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                               ×
                           </button>
-                          <h4><s:text name="sorry"/></h4> <strong><s:actionerror/></strong>.
+                          <h4><s:actionerror/></h4>.
                       </div>
                   </s:if>
                   <s:if test="hasActionMessages()">
@@ -71,7 +67,7 @@
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                               ×
                           </button>
-                          <h4><s:text name="Cuentacreadaconexito"/></h4> <strong><s:text name="Felicidades"/></strong> <s:text name="Yapuedesiniciarsesion"/>。
+                          <h4><s:actionmessage/></h4>。
                       </div>
                   </s:if>
               </div>
@@ -80,4 +76,30 @@
           </div>
       </div>
   </div>
+  <script src="js/rollups/md5.js"></script>
+<script src="js/components/enc-base64-min.js"></script>
+<script>
+	$( document ).ready(function() {
+	  // Handler for .ready() called.
+		document.getElementById('password').value = "";
+	    document.getElementById('password1').value = "";
+	    document.getElementById('password2').value = "";
+	});
+		
+	
+   function cript(){
+       var pass = CryptoJS.MD5(document.getElementById('password').value);
+       var pass2 = CryptoJS.MD5(document.getElementById('password1').value);
+       var pass3 = CryptoJS.MD5(document.getElementById('password2').value);
+       var passString = pass.toString();
+       var passString2 = pass2.toString();
+       var passString3 = pass3.toString();
+     	//alert(passString);
+       //console.log(passString2);
+       //console.log(passString3);
+       document.getElementById('password').value = passString;
+       document.getElementById('password1').value = passString2;
+       document.getElementById('password2').value = passString3;
+   }
+</script>
 <jsp:include page="WEB-INF/jsp/piePagina.jsp"></jsp:include>

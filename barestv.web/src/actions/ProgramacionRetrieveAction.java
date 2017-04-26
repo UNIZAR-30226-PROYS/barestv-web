@@ -6,9 +6,11 @@ import beans.*;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import configuracion.C;
 import factoria.FactoriaDAO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -23,7 +25,7 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Evento> programacion;
+	private HashMap<String,ArrayList<Evento>> programacion;
 	
 	private Map<String, Object> session;
 	
@@ -42,8 +44,17 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 			categorias.add("Musica");
 			categorias.add("Cine");
 			categorias.add("Series");
-			programacion = FactoriaDAO.getEventoDAO("mysql").getAll(u.getEstablecimiento());
-			
+			ArrayList<Evento> eventos = FactoriaDAO.getEventoDAO(C.baseDatos).getAll(u.getUsuario());
+			programacion = new HashMap<String,ArrayList<Evento>>();
+			for (Evento evento : eventos) {
+				if(!programacion.containsKey(evento.getInicio().getFe())){
+					ArrayList<Evento> x = new ArrayList<Evento>();
+					x.add(evento);
+					programacion.put(evento.getInicio().getFe(),x );
+				}else{
+					programacion.get(evento.getInicio()).add(evento);
+				}
+			}
 			return "success";
 				
 		}catch(Exception e){
@@ -64,14 +75,23 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 	}
 
 
+	
 
-	public ArrayList<Evento> getProgramacion() {
+
+
+	/**
+	 * @return the programacion
+	 */
+	public HashMap<String, ArrayList<Evento>> getProgramacion() {
 		return programacion;
 	}
 
 
 
-	public void setProgramacion(ArrayList<Evento> programacion) {
+	/**
+	 * @param programacion the programacion to set
+	 */
+	public void setProgramacion(HashMap<String, ArrayList<Evento>> programacion) {
 		this.programacion = programacion;
 	}
 

@@ -14,7 +14,7 @@
 
 <meta name="description"
 	content="${param.title}. Interfaz para administradores de BaresTV.">
-<meta name="author" content="LayoutIt!">
+<meta name="author" content="Margarita Hamilton">
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">

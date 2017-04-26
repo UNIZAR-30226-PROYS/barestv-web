@@ -41,9 +41,23 @@
 			<result name="error">error.jsp</result>
 			<result name="login">index.jsp</result>
 		</action>
+		
+		<action name="editEstablecimiento"  class="actions.EstablecimientoEditAction">
+			<result name="input">esta_esta.jsp</result>
+			<result name="success">esta_esta.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
 		<!-- Opciones usuario -->
 		<action name="getUsuario">
 			<result>esta_usuario.jsp</result>
+		</action>
+		<action name="addUser" class="actions.UsuarioCreateAction">
+			<result name="input">index.jsp</result>
+			<result name="fail">index.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="success">index.jsp</result>
 		</action>
 		<!-- Session -->
 		<action name="logearse" class="actions.SessionCreateAction">

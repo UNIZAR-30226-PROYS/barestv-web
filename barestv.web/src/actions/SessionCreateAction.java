@@ -5,6 +5,7 @@ import beans.Usuario;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import configuracion.C;
 import factoria.FactoriaDAO;
 
 import java.util.Map;
@@ -51,20 +52,26 @@ public class SessionCreateAction extends ActionSupport implements SessionAware {
 	
 	//Para procesar lo que se tiene que hacer con el formulario de logeo
 	public String execute() throws Exception {
-		Usuario u = FactoriaDAO.getUsuarioDAO("prueba").get(usuario);
+		Usuario u = FactoriaDAO.getUsuarioDAO(C.baseDatos).get(usuario,password);
 		
 		if (u == null){
-			addActionError("Usuario no encontrado");
+			addActionError("Usuario o password invalidos.");
 			return "fail";
 		}else {
-			session.put("usuario", u);
-			
-			if (u.isEsAdmin()){
-				session.put("admin", true);
-				return "admin";
+			if (!u.isEsAlta()){
+				addActionError("Usuario pendiente de alta");
+				return "fail";
 			}else{
-				return "noadmin";
+				session.put("usuario", u);
+				
+				if (u.isEsAdmin()){
+					session.put("admin", true);
+					return "admin";
+				}else{
+					return "noadmin";
+				}
 			}
+			
 			
 		}
 	}

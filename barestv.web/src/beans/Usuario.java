@@ -1,40 +1,30 @@
 package beans;
 
 public class Usuario { 
-	private String usuario;	
+	private String usuario;  // Nombre del usuario y del nickbar
 	private String password;
-	private String establecimiento;
 	private boolean esAdmin;
+	private boolean esAlta;
 	
 	public Usuario (){
 		usuario = "";
 		password ="";
-		establecimiento ="";
 		esAdmin = false;
-	}
-	
-	/**
-	 * Crea un Usuario tipo normal
-	 * @param usuario
-	 * @param password
-	 * @param establecimiento
-	 */
-	public Usuario(String usuario, String password, String establecimiento) {
-		this.usuario = usuario;
-		this.password = password;
-		this.establecimiento = establecimiento;
-		esAdmin = false;
+		esAlta = false;
 	}
 	/**
-	 * Crea un Usuario tipo admin
+	 * Crea un usuario
 	 * @param usuario
 	 * @param password
+	 * @param esAdmin
 	 */
-	public Usuario(String usuario, String password) {
+	public Usuario(String usuario, String password,boolean esAdmin,boolean esAlta) {
 		this.usuario = usuario;
 		this.password = password;
-		esAdmin = true;
+		this.esAdmin = esAdmin;
+		this.esAlta = esAlta;
 	}
+
 	public String getUsuario() {
 		return usuario;
 	}
@@ -47,12 +37,6 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getEstablecimiento() {
-		return establecimiento;
-	}
-	public void setEstablecimiento(String establecimiento) {
-		this.establecimiento = establecimiento;
-	}
 
 	public boolean isEsAdmin() {
 		return esAdmin;
@@ -60,6 +44,12 @@ public class Usuario {
 
 	public void setEsAdmin(boolean esAdmin) {
 		this.esAdmin = esAdmin;
+	}
+	public boolean isEsAlta() {
+		return esAlta;
+	}
+	public void setEsAlta(boolean esAlta) {
+		this.esAlta = esAlta;
 	}
 	
 	
