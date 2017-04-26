@@ -1,11 +1,16 @@
 package implementacionMysql;
 
 
+
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import implementacionPrueba.*;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import beans.*;
 import dao.*;
 import db.DBFacade;
@@ -14,6 +19,7 @@ import db.DBFacade;
 public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 
 	private DBFacade db = null;
+
 	
 	public UsuarioDAOMysql() throws Exception {
 		// TODO Auto-generated constructor stub
@@ -54,9 +60,11 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		return user;	
 	}
 
+
 	@Override
 	public Boolean edit(Usuario usuario) throws Exception {
 		// TODO Auto-generated method stub
+
 		Boolean esCorrecto = true;
 		try{
 			db.abrirConexion();
@@ -139,5 +147,6 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 	}
 
 
+		
 
 }

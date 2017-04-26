@@ -18,11 +18,11 @@ public class DBFacade {
 	private Connection con = null;
 	private DataSource source;
 	private PreparedStatement prepS;
-	
-	public DBFacade() throws NamingException{
-		
+
+	public DBFacade() throws NamingException {
+
 		Context env = null;
-		
+
 		try {
 			env = (Context) new InitialContext().lookup("java:comp/env");
 		} catch (NamingException e) {
@@ -38,35 +38,32 @@ public class DBFacade {
 			throw e;
 		}
 	}
-	
-	public void cerrarConexion() throws Exception{
+
+	public void cerrarConexion() throws Exception {
 		try {
-			if (con !=null){
+			if (con != null) {
 				con.close();
 			}
-			if (prepS !=null){
+			if (prepS != null) {
 				prepS.close();
 			}
-		}catch(SQLException e){
-			throw new Exception ("Error cerrando la conexi髇.");
+		} catch (SQLException e) {
+			throw new Exception("Error cerrando la conexi贸n.");
 		}
-		
+
 	}
-	
-	public void abrirConexion() throws Exception{
+
+	public void abrirConexion() throws Exception {
 		try {
 			con = source.getConnection();
 			con.setAutoCommit(false);
-		}catch(SQLException e){
-			throw new Exception("Error abriendo la conexi髇.");
+		} catch (SQLException e) {
+			throw new Exception("Error abriendo la conexi贸n.");
 		}
-		
+
 	}
 
-	
-	
-	
-	public void commit() throws Exception{
+	public void commit() throws Exception {
 		try {
 			con.commit();
 		} catch (SQLException e) {
@@ -74,8 +71,8 @@ public class DBFacade {
 			throw new Exception("Error haciendo commit.");
 		}
 	}
-	
-	public void rollback() throws Exception{
+
+	public void rollback() throws Exception {
 		try {
 			con.rollback();
 		} catch (SQLException e) {
@@ -83,54 +80,53 @@ public class DBFacade {
 			throw new Exception("Error haciendo un rollback.");
 		}
 	}
-	
-	public ResultSet ejecutarConsulta(String statement) throws Exception{
+
+	public ResultSet ejecutarConsulta(String statement) throws Exception {
 		ResultSet result = null;
-		
+
 		try {
-			if (con ==null){
-				throw new Exception("Conexi髇 nula, no se puede ejecutar la consulta.");
+			if (con == null) {
+				throw new Exception("Conexi贸n nula, no se puede ejecutar la consulta.");
 			}
-			if (statement ==null){
+			if (statement == null) {
 				throw new Exception("Consulta nula, no se puede ejecutar la consulta.");
 			}
 			prepS = con.prepareStatement(statement);
 			result = prepS.executeQuery();
-			
-		}catch (SQLException e){
+
+		} catch (SQLException e) {
 			throw new Exception("Error ejecutando consulta sin prametros ");
-		}finally{
-			
-			
+		} finally {
+
 		}
-		
+
 		return result;
 	}
-	public int ejecutarUpdate(String statement) throws Exception{
+
+	public int ejecutarUpdate(String statement) throws Exception {
 		int result = 0;
 		PreparedStatement prepS;
 		try {
-			if (con ==null){
-				throw new Exception("Conexi髇 nula, no se puede ejecutar la consulta.");
+			if (con == null) {
+				throw new Exception("Conexi贸n nula, no se puede ejecutar la consulta.");
 			}
-			if (statement ==null){
+			if (statement == null) {
 				throw new Exception("Consulta nula, no se puede ejecutar la consulta.");
 			}
 			prepS = con.prepareStatement(statement);
-			result = prepS.executeUpdate(statement,Statement.RETURN_GENERATED_KEYS);
+			result = prepS.executeUpdate(statement, Statement.RETURN_GENERATED_KEYS);
 
 			ResultSet rs = prepS.getGeneratedKeys();
-		
-			if (rs.next()){
-				result=rs.getInt(1);
+
+			if (rs.next()) {
+				result = rs.getInt(1);
 			}
 			System.out.println(statement);
 			return result;
-		}catch (SQLException e){
+		} catch (SQLException e) {
 			throw new Exception(e);
 		}
-		
-		
+
 	}
-	
+
 }

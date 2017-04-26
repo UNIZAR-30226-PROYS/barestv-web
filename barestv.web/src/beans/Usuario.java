@@ -1,5 +1,6 @@
 package beans;
 
+
 public class Usuario { 
 	private String usuario;  // Nombre del usuario y del nickbar
 	private String password;
@@ -12,6 +13,7 @@ public class Usuario {
 		esAdmin = false;
 		esAlta = false;
 	}
+
 	/**
 	 * Crea un usuario
 	 * @param usuario
@@ -23,17 +25,21 @@ public class Usuario {
 		this.password = password;
 		this.esAdmin = esAdmin;
 		this.esAlta = esAlta;
+
 	}
 
 	public String getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -45,6 +51,7 @@ public class Usuario {
 	public void setEsAdmin(boolean esAdmin) {
 		this.esAdmin = esAdmin;
 	}
+
 	public boolean isEsAlta() {
 		return esAlta;
 	}
@@ -53,4 +60,5 @@ public class Usuario {
 	}
 	
 	
+
 }
