@@ -76,7 +76,7 @@
 				<table class="table">
 						<thead>
 						  <tr>
-							<th><s:property value="key"/></th>
+							<th><span class="label label-primary"><s:property value="key"/></span></th>
 							<th></th>
 							<th></th>
 						  </tr>
@@ -91,8 +91,9 @@
 						  <tr>
 							<td>
 								<blockquote>
+								
 								<p>
-									<s:property value="#evento.nombre"/>
+									<span class="label label-default"><s:property value="#evento.inicio.ho"/>-<s:property value="#evento.fin.ho"/></span>  <s:property value="#evento.nombre"/> 
 								</p> 
 								<small><s:property value="#evento.descripcion"/></small>
 								<small>Categoria: <s:property value="#evento.categoria"/></small>

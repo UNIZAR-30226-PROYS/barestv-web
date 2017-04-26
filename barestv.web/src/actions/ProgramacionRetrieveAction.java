@@ -52,7 +52,8 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 					x.add(evento);
 					programacion.put(evento.getInicio().getFe(),x );
 				}else{
-					programacion.get(evento.getInicio()).add(evento);
+					programacion.get(evento.getInicio().getFe()).add(evento);
+					
 				}
 			}
 			return "success";
