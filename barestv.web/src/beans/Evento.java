@@ -1,32 +1,96 @@
 package beans;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class Evento {
     
 	private String nombre;	
 	private String descripcion;
 	
 	/* Fecha */
-	private Fecha inicio;
-	private Fecha fin;
+	private Timestamp inicio;
+	private Timestamp fin;
 	
 	private String categoria;
 	
 	public Evento(){
 		nombre = "";
 		descripcion ="";
-		inicio = new Fecha();
-		fin = new Fecha();
+		inicio = Timestamp.valueOf("2007-09-23 10:10:10.0");
+		fin = Timestamp.valueOf("2007-09-23 10:10:10.0");
 		categoria = "";
+		System.out.println(inicio.toLocaleString());
 	}
 	
-	public Evento(String nombre, String descripcion, Fecha inicio, Fecha fin,
-			String categoria) {
+	
+
+
+	public Evento(String nombre, String descripcion, Timestamp inicio,
+			Timestamp fin, String categoria) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.inicio = inicio;
 		this.fin = fin;
 		this.categoria = categoria;
+		System.out.println(inicio.toLocaleString());
 	}
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+	
+
+
+
+	/**
+	 * @return the inicio
+	 */
+	public Timestamp getInicio() {
+		return inicio;
+	}
+
+
+
+
+	/**
+	 * @param inicio the inicio to set
+	 */
+	public void setInicio(Timestamp inicio) {
+		this.inicio = inicio;
+	}
+
+
+
+
+	/**
+	 * @return the fin
+	 */
+	public Timestamp getFin() {
+		return fin;
+	}
+
+
+
+
+	/**
+	 * @param fin the fin to set
+	 */
+	public void setFin(Timestamp fin) {
+		this.fin = fin;
+	}
+
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -44,21 +108,6 @@ public class Evento {
 		this.descripcion = descripcion;
 	}
 	
-	public Fecha getInicio() {
-		return inicio;
-	}
-
-	public void setInicio(Fecha inicio) {
-		this.inicio = inicio;
-	}
-
-	public Fecha getFin() {
-		return fin;
-	}
-
-	public void setFin(Fecha fin) {
-		this.fin = fin;
-	}
 
 	public String getCategoria() {
 		return categoria;

@@ -41,21 +41,12 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			String sql =  "select * from programa where bar like \""+establecimiento+"\";"; // bar es un acronimo sacarlo de la tabla bar
 			System.out.println(sql);
 			ResultSet rs = db.ejecutarConsulta(sql);
-			eventos = new ArrayList<Evento>();
-			
-
-            SimpleDateFormat fecha = new SimpleDateFormat("ddMMyyyy");
-            SimpleDateFormat hora = new SimpleDateFormat("HHmm");
-            
-			while (rs.next()){                              
-				int fini = Integer.valueOf(fecha.format(rs.getDate("inicio")));
-				int ffin = Integer.valueOf(fecha.format(rs.getDate("fin")));
-				int hini = Integer.valueOf(hora.format(rs.getTime("inicio")));
-				int hfin = Integer.valueOf(hora.format(rs.getTime("fin")));			
-			                    
+			eventos = new ArrayList<Evento>();         
+			while (rs.next()){   
+				
 				Evento e= new Evento(
 						//nombre,desc, fechaini,fechafin,categoria
-						rs.getString("titulo"),rs.getString("descr"),new Fecha(fini,hini),new Fecha(ffin,hfin),rs.getString("cat")
+						rs.getString("titulo"),rs.getString("descr"),rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
 						);
 			
 				
@@ -81,38 +72,30 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 	@Override
 	public Evento get(String establecimiento, String tituloEvento) throws Exception {
 		// TODO Auto-generated method stub
-                Evento e = null;
+		Evento ev= null;
+		
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select * from programa where bar like \""+establecimiento+"\" and titulo like "+ tituloEvento +";"; // bar es un acronimo sacarlo de la tabla bar
+			String sql =  "select * from programa where bar like \""+establecimiento+"\" and titulo like \""+tituloEvento+"\";"; // bar es un acronimo sacarlo de la tabla bar
 			System.out.println(sql);
 			ResultSet rs = db.ejecutarConsulta(sql);
-			
-			while (rs.next()){
-				//SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-				Date fechainicio = rs.getDate("inicio");
-				Date fechafin = rs.getDate("fin");
-                                
-                                System.err.println("FI:" + fechainicio);
-                                
-				int fini = Integer.valueOf(fechainicio.getDay()+""+fechainicio.getMonth()+""+fechainicio.getYear());
-				int ffin = Integer.valueOf(fechafin.getDay()+""+fechafin.getMonth()+""+fechafin.getYear());
-				int hini = Integer.valueOf(fechainicio.getHours()+""+fechainicio.getMinutes());
-				int hfin = Integer.valueOf(fechafin.getHours()+""+fechafin.getMinutes());
-				
-				e= new Evento(
+
+            
+			while (rs.next()){   			
+				ev= new Evento(
 						//nombre,desc, fechaini,fechafin,categoria
-						rs.getString("titulo"),rs.getString("descr"),new Fecha(fini,hini),new Fecha(ffin,hfin),rs.getString("cat")
+						rs.getString("titulo"),rs.getString("descr"),rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
 						);
 			
 				
-		
+				
+					
 				
 			}
-		}catch (Exception ex){
-			System.out.println("Error al obtener evento: "+ex.getMessage());
-			throw new Exception(ex.getMessage());
+		}catch (Exception e){
+			System.out.println("Error al obtener evento: "+e.getMessage());
+			throw new Exception(e.getMessage());
 		}
 		finally {
 			try{
@@ -122,7 +105,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 				System.out.println("Error cerrando la conexi?n");
 			}
 		}
-                return e;
+		return ev;	
 	}
 
 	@Override
@@ -130,9 +113,10 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		// TODO Auto-generated method stub
 		Boolean esCorrecto = true;
 		try{
-//			java.text.SimpleDateFormat sdf = 
-//				     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//			String da = sdf.format(comentario.getFecha());
+			java.text.SimpleDateFormat sdf = 
+				     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String ini = sdf.format(e.getInicio());
+			String fin = sdf.format(e.getFin());
 			
 			db.abrirConexion();
 			String queryString = "insert into programa (titulo, bar, descr, destacado, inicio, fin, cat) values "
@@ -140,8 +124,8 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			 		+"','"+establecimiento
 			 		+"','"+e.getDescripcion()
 			 		+"','0"
-			 		+"','"+e.getInicio().toMySQL()
-			 		+"','"+e.getFin().toMySQL()
+			 		+"','"+ini
+			 		+"','"+fin
 			 		+"','"+e.getCategoria()
 			 		+"');";                    
                         db.ejecutarUpdate(queryString);
@@ -158,6 +142,63 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			}
 		}
 		return esCorrecto;		
+	}
+
+	@Override
+	public boolean remove(String titulo, String user) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "delete from programa WHERE titulo = \""+titulo+"\" and bar = \""+user+" \"; ";                    
+           db.ejecutarUpdate(queryString);
+		}catch (Exception e){
+			System.out.println("Error al eliminar evento: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
+	@Override
+	public boolean edit(String usuario, Evento e) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			java.text.SimpleDateFormat sdf = 
+				     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String ini = sdf.format(e.getInicio());
+			String fin = sdf.format(e.getFin());
+			 String queryString = "UPDATE programa " +
+                "SET  descr = '"+e.getDescripcion()+"'"
+					 + ", destacado = 0"
+					 + ", inicio = '"+ini+"'"
+					 + ", fin = '"+fin+"'"
+					 + ", cat = '"+e.getCategoria()+"'"
+					 + " WHERE  titulo = '"+e.getNombre()+"' and bar = '"+usuario+" ' ";                    
+           
+            db.ejecutarUpdate(queryString);
+		}catch (Exception ex){
+			System.out.println("Error al modificar establecimiento: "+ex.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+		
 	}
 
 

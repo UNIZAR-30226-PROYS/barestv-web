@@ -22,6 +22,7 @@
 			<result name="success">admin_establecimiento.jsp</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
 		</action>
 		
 		<!-- Paginas del usuario normal -->
@@ -29,11 +30,14 @@
 			<result name="success" type="chain">getProgramacion</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+			<result name="input">esta_programacion_input.jsp</result>
 		</action>
 		<action name="getProgramacion" class="actions.ProgramacionRetrieveAction">
 			<result name="success">esta_programacion.jsp</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
 		</action>
 		<action name="getEstablecimiento"  class="actions.EstablecimientoRetrieveAction">
 			<result name="success">esta_esta.jsp</result>
@@ -41,10 +45,28 @@
 			<result name="error">error.jsp</result>
 			<result name="login">index.jsp</result>
 		</action>
-		
+		<action name="newPassword"  class="actions.PasswordEditAction">
+			<result name="input">esta_usuario.jsp</result>
+			<result name="success">esta_usuario.jsp</result>
+			<result name="fail">esta_usuario.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
 		<action name="editEstablecimiento"  class="actions.EstablecimientoEditAction">
 			<result name="input">esta_esta.jsp</result>
 			<result name="success">esta_esta.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
+		<action name="getEvento" class="actions.EventoRetrieveAction">
+			<result name="success">esta_programacion_input.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
+		<action name="removeEvento"  class="actions.EventoRemoveAction">
+			<result name="success" type="chain">getProgramacion</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>
 			<result name="login">index.jsp</result>

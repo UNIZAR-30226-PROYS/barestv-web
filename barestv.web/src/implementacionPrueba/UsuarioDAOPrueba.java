@@ -36,5 +36,12 @@ public class UsuarioDAOPrueba implements UsuarioInterfazDAO {
 		return null;
 	}
 
+	@Override
+	public Boolean newPassword(Usuario usuario, String password)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

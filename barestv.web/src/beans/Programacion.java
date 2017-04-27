@@ -5,20 +5,20 @@ import java.util.HashMap;
 
 public class Programacion {
 	
-	private HashMap<Fecha,ArrayList<Evento>> programacion;
+	private HashMap<String,ArrayList<Evento>> programacion;
 	private String establacimiento;
 	
-	public Programacion(HashMap<Fecha, ArrayList<Evento>> programacion,
+	public Programacion(HashMap<String,ArrayList<Evento>> programacion,
 			String establacimiento) {
 		this.programacion = programacion;
 		this.establacimiento = establacimiento;
 	}
 
-	public HashMap<Fecha, ArrayList<Evento>> getProgramacion() {
+	public HashMap<String, ArrayList<Evento>> getProgramacion() {
 		return programacion;
 	}
 
-	public void setProgramacion(HashMap<Fecha, ArrayList<Evento>> programacion) {
+	public void setProgramacion(HashMap<String, ArrayList<Evento>> programacion) {
 		this.programacion = programacion;
 	}
 

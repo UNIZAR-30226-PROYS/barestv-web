@@ -46,6 +46,7 @@ public class UsuarioCreateAction extends ActionSupport implements SessionAware {
 		if(!password1.equals(usr.getPassword())){
 			addFieldError("password1", getText("errors.duplicated"));
 			addFieldError("usr.password", getText("errors.duplicated"));
+			hayErrores = true;
 		}
 		if (hayErrores){
 			addActionError(getText("errors.login"));

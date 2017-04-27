@@ -15,4 +15,8 @@ public interface EventoInterfazDAO {
 	
 	//Añadir un evento
 	public boolean add(String establecimiento, Evento e) throws Exception;
+
+	public boolean remove(String titulo, String user) throws Exception;
+
+	public boolean edit(String usuario, Evento e) throws Exception;
 }

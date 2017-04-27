@@ -74,63 +74,38 @@
 			</form>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				Programacion
-			</h3>
-			
-			<s:iterator value="programacion">
-				<table class="table">
-						<thead>
-						  <tr>
-							<th><span class="label label-primary"><s:property value="key"/></span></th>
-							<th></th>
-							<th></th>
-						  </tr>
-						</thead>
-						<tbody>
-				<s:iterator value="value" var="evento">
-					<s:set var="fechainicio" value="#evento.inicio"/>	
-					<s:set var="fechafin" value="#evento.fin"/>	
-						<tr>
-							<td>
-								<blockquote>
-								
-								<p>
-									<span class="label label-default"><s:date name="fechainicio" format="HH:mm" />-<s:date name="fechafin" format="HH:mm" /></span>  <s:property value="#evento.nombre"/> 
-								</p> 
-								<small><s:property value="#evento.descripcion"/></small>
-								<small>Categoria: <s:property value="#evento.categoria"/></small>
-								</blockquote>
-							</td>
-							<td class="boton">
-								<form role="form" method="post" action="<s:url action="getEvento"/>">
-									<input type="hidden" name="titulo" value="<s:property value="#evento.nombre"/>"/>
-									<input type="hidden" name="bar" value="<s:property value="user"/>"/>
-									<button type="submit" class="btn btn-primary">
-										Modificar
-									</button>
-								</form>
-							</td>
-							<td class="boton">
-								<form role="form" method="post" action="<s:url action="removeEvento"/>">
-									<input type="hidden" name="titulo" value="<s:property value="#evento.nombre"/>"/>
-									<input type="hidden" name="bar" value="<s:property value="user"/>"/>
-									<button type="submit" class="btn btn-danger">
-										Eliminar
-									</button>
-								</form>
-							</td>
-						  </tr>
-						
-				
-				</s:iterator> 
-				</tbody>
-				</table>
-			</s:iterator> 
-		</div>
-	</div>
+	<!-- mensajes de verificacion -->
+    
+  <div class="row" style="margin-top: 40px;">
+      <div class="col-md-12">
+          <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-6">
+                  <s:if test="hasActionErrors()">
+                      <!-- Mensajes de error -->
+                      <div class="alert alert-dismissable alert-danger">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                              ×
+                          </button>
+                          <h4><s:actionerror/></h4>.
+                      </div>
+                  </s:if>
+                  <s:if test="hasActionMessages()">
+                      <!-- Mensaje de exito -->
+                      <div class="alert alert-dismissable alert-success">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                              ×
+                          </button>
+                          <h4><s:actionmessage/></h4>。
+                      </div>
+                  </s:if>
+              </div>
+              <div class="col-md-3">
+              </div>
+          </div>
+      </div>
+  </div>
 	<!--Load Script and Stylesheet -->
 	<script type="text/javascript" src="js/jquery.simple-dtpicker.js"></script>
 	<link type="text/css" href="css/jquery.simple-dtpicker.css" rel="stylesheet" />

@@ -146,6 +146,32 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		return es;	
 	}
 
+	@Override
+	public Boolean newPassword(Usuario usuario, String password)
+			throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "UPDATE usuario " +
+                "SET  clave = '"+password+"'"				
+					 + " WHERE  nick = '"+usuario.getUsuario()+"'";                    
+           
+            db.ejecutarUpdate(queryString);
+		}catch (Exception e){
+			System.out.println("Error al modificar el passwrod del usuario: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
 
 		
 

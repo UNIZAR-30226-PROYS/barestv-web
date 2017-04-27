@@ -9,6 +9,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import configuracion.C;
 import factoria.FactoriaDAO;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,7 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 	
 	private ArrayList<String> categorias;
 	
+	private String user;
 	
 	public String execute() throws Exception {
 		
@@ -44,15 +47,19 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 			categorias.add("Musica");
 			categorias.add("Cine");
 			categorias.add("Series");
+			user = u.getUsuario();
 			ArrayList<Evento> eventos = FactoriaDAO.getEventoDAO(C.baseDatos).getAll(u.getUsuario());
 			programacion = new HashMap<String,ArrayList<Evento>>();
 			for (Evento evento : eventos) {
-				if(!programacion.containsKey(evento.getInicio().getFe())){
+				DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			
+				String fe = format.format(evento.getInicio());
+				if(!programacion.containsKey(fe)){
 					ArrayList<Evento> x = new ArrayList<Evento>();
 					x.add(evento);
-					programacion.put(evento.getInicio().getFe(),x );
+					programacion.put(fe,x );
 				}else{
-					programacion.get(evento.getInicio().getFe()).add(evento);
+					programacion.get(fe).add(evento);
 					
 				}
 			}
@@ -77,6 +84,24 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 
 
 	
+	
+
+
+	/**
+	 * @return the user
+	 */
+	public String getUser() {
+		return user;
+	}
+
+
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(String user) {
+		this.user = user;
+	}
 
 
 

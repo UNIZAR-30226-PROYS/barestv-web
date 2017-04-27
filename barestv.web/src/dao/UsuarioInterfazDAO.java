@@ -13,6 +13,9 @@ public interface UsuarioInterfazDAO {
 
 	//Edicion y eliminacion
 	public Boolean edit(Usuario usuario) throws Exception;
+	
+	public Boolean newPassword(Usuario usuario,String password) throws Exception;
+	
 	//public Boolean remove(Usuario usuario) throws Exception;
 	public Boolean add(Usuario usuario)throws Exception;
 

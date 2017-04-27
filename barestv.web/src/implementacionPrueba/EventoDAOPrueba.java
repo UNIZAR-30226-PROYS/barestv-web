@@ -31,6 +31,18 @@ public class EventoDAOPrueba implements EventoInterfazDAO {
 		return false;
 	}
 
+	@Override
+	public boolean remove(String titulo, String user) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean edit(String usuario, Evento e) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 
