@@ -2,10 +2,7 @@ package implementacionMysql;
 
 
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import implementacionPrueba.*;
 import beans.*;
 import dao.*;
 import db.DBFacade;
@@ -111,6 +108,67 @@ public class EstablecimientoDAOMysql implements EstablecimientoInterfazDAO {
 
 		}catch (Exception e){
 			System.out.println("Error al modificar establecimiento: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
+	@Override
+	public ArrayList<Establecimiento> getAll() throws Exception {
+		ArrayList<Establecimiento> x = null;
+		
+		try{
+			
+			db.abrirConexion();
+			String sql =  "select * from bar;"; // bar es un acronimo sacarlo de la tabla bar
+			ResultSet rs = db.ejecutarConsulta(sql);
+			x = new ArrayList<Establecimiento>();         
+			while (rs.next()){   
+				
+				Establecimiento es= new Establecimiento(
+						rs.getString("nickbar"), 
+						rs.getString("nombre"), rs.getString("descrbar"), 
+						rs.getBoolean("activado"), rs.getDouble("lat"), 
+						rs.getDouble("lng"), rs.getString("direccion"), 
+						rs.getString("urlimagen"));
+			
+				
+				x.add(es);
+					
+				
+			}
+		}catch (Exception e){
+			System.out.println("Error al obtener todos los establecimientos: "+e.getMessage());
+			throw new Exception(e.getMessage());
+		}
+		finally {
+			try{
+				
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexi?n");
+			}
+		}
+		return x;	
+	}
+
+	@Override
+	public Boolean remove(String nickbar) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "delete from bar WHERE nickbar = \""+nickbar+"\"; ";                    
+           db.ejecutarUpdate(queryString);
+		}catch (Exception e){
+			System.out.println("Error al eliminar establecimiento: "+e.getMessage());
 			esCorrecto = false;
 		}
 		finally {

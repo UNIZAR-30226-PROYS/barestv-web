@@ -43,6 +43,12 @@ public class EventoDAOPrueba implements EventoInterfazDAO {
 		return false;
 	}
 
+	@Override
+	public boolean removeAll(String nickbar) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 

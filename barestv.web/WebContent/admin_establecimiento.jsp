@@ -20,46 +20,34 @@
 				  </tr>
 				</thead>
 				<tbody>
-				  <tr>
+				<s:iterator value="establecimientos" var="bar">
+				 <tr>
 					<td>
 						<blockquote>
 						<p>
-							Establecimiento 1
+							<s:property value="#bar.nickbar"/>: <s:property value="#bar.nombre"/>
 						</p> 
-						<small>Ubicacion</small>
+						<small><s:property value="#bar.direccion"/></small>
 						</blockquote>
 					</td>
 					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Modificar
-						</button>
+						<form role="form" method="post" action="<s:url action="getEstablecimiento"/>">
+							<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="nickbar"/>
+							<button type="submit" class="btn btn-primary">
+								Modificar
+							</button>
+						</form>
 					</td>
 					<td class="boton">
-						<button type="button" class="btn btn-danger">
-							Eliminar
-						</button>
+						<form role="form" method="post" action="<s:url action="deleteAccout"/>">
+							<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="nickbar"/>
+							<button type="submit" class="btn btn-danger">
+								Eliminar
+							</button>
+						</form>
 					</td>
 				  </tr>
-				  <tr>
-					<td>
-						<blockquote>
-						<p>
-							Establecimiento 2
-						</p> 
-						<small>Ubicacion</small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Modificar
-						</button>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-danger">
-							Eliminar
-						</button>
-					</td>
-				  </tr>
+				  </s:iterator>
 				</tbody>
 			  </table>
 		</div>

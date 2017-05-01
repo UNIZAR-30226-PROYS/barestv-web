@@ -19,14 +19,13 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author alumno
  *
  */
-public class EstablecimientoRetrieveAction extends ActionSupport implements SessionAware {
+public class AccountRemoveAction extends ActionSupport implements SessionAware {
 
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Establecimiento est;
 	private Map<String, Object> session;
 	private String nickbar;
 	
@@ -35,12 +34,15 @@ public class EstablecimientoRetrieveAction extends ActionSupport implements Sess
 		try{
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if (u.isEsAdmin()){
-				est = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).get(nickbar);
-				return "success_admin";	
+			if (!u.isEsAdmin()) return "login";
+			
+			boolean correcto = FactoriaDAO.getEventoDAO(C.baseDatos).removeAll(nickbar);
+			boolean correcto2 = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).remove(nickbar);
+			boolean correcto3 = FactoriaDAO.getUsuarioDAO(C.baseDatos).remove(nickbar);
+			if (correcto && correcto2 && correcto3){
+				return "success";
 			}else{
-				est = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).get(u.getUsuario());
-				return "success_normal";
+				return "fail";
 			}
 			
 				
@@ -65,15 +67,6 @@ public class EstablecimientoRetrieveAction extends ActionSupport implements Sess
 		this.nickbar = nickbar;
 	}
 
-
-	public Establecimiento getEst() {
-		return est;
-	}
-
-
-	public void setEst(Establecimiento est) {
-		this.est = est;
-	}
 
 
 	public Map<String, Object> getSession() {

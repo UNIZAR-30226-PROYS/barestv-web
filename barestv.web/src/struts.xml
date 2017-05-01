@@ -40,7 +40,8 @@
 			<result name="login">index.jsp</result>
 		</action>
 		<action name="getEstablecimiento"  class="actions.EstablecimientoRetrieveAction">
-			<result name="success">esta_esta.jsp</result>
+			<result name="success_admin">esta_esta.jsp</result>
+			<result name="success_normal">esta_esta.jsp</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>
 			<result name="login">index.jsp</result>
@@ -61,6 +62,12 @@
 		</action>
 		<action name="getEvento" class="actions.EventoRetrieveAction">
 			<result name="success">esta_programacion_input.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
+		<action name="deleteAccout" class="actions.AccountRemoveAction">
+			<result name="success" type="chain">getEstablecimientos</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>
 			<result name="login">index.jsp</result>

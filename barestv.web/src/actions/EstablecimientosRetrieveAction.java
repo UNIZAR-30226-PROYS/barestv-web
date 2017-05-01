@@ -2,9 +2,19 @@ package actions;
 
 
 
+import beans.*;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 
+
+
+
+
+import configuracion.C;
+import factoria.FactoriaDAO;
+
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -19,7 +29,7 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 
 
 
-	
+	ArrayList<Establecimiento> establecimientos;
 	/**
 	 * 
 	 */
@@ -28,11 +38,37 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 
 	
 	public String execute() throws Exception {
+		Usuario u = (Usuario)session.get("usuario");
+		if (u == null || !u.isEsAdmin()) return "login";
+		
+		
+		establecimientos = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).getAll();
+		for (Establecimiento esta : establecimientos) {
+			if(!esta.isActivado()){
+				establecimientos.remove(esta);
+			}
+		}
 		
 		return "success";
 	}
 	
 	
+	/**
+	 * @return the establecimientos
+	 */
+	public ArrayList<Establecimiento> getEstablecimientos() {
+		return establecimientos;
+	}
+
+
+	/**
+	 * @param establecimientos the establecimientos to set
+	 */
+	public void setEstablecimientos(ArrayList<Establecimiento> establecimientos) {
+		this.establecimientos = establecimientos;
+	}
+
+
 	public Map<String, Object> getSession() {
 		return session;
 	}

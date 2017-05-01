@@ -90,7 +90,7 @@
        var passString = pass.toString();
        var passString2 = pass2.toString();
        var passString3 = pass3.toString();
-     	alert(passString);
+     	//alert(passString);
        //console.log(passString2);
        //console.log(passString3);
        document.getElementById('old').value = passString;

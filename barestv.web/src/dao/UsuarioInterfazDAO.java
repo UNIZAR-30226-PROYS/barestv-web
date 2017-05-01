@@ -16,10 +16,12 @@ public interface UsuarioInterfazDAO {
 	
 	public Boolean newPassword(Usuario usuario,String password) throws Exception;
 	
-	//public Boolean remove(Usuario usuario) throws Exception;
+	public Boolean remove(String nickbar)throws Exception;
 	public Boolean add(Usuario usuario)throws Exception;
 
-	boolean exist(String usuario) throws Exception;
+	public Boolean exist(String usuario) throws Exception;
+
+	
 	
 	
 }

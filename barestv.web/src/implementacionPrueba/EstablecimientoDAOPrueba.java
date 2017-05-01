@@ -1,6 +1,8 @@
 package implementacionPrueba;
 
 
+import java.util.ArrayList;
+
 import beans.Establecimiento;
 import dao.EstablecimientoInterfazDAO;
 
@@ -22,6 +24,18 @@ public class EstablecimientoDAOPrueba implements EstablecimientoInterfazDAO {
 
 	@Override
 	public Boolean add(Establecimiento e) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Establecimiento> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean remove(String nickbar) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

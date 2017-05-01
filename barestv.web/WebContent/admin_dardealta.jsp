@@ -14,7 +14,7 @@
 				<div class="form-group">
 					 
 					<label for="usuario">
-						Usuario
+						Nickbar
 					</label>
 					<input class="form-control" id="usuario" name="usuario" type="text">
 				</div>
@@ -32,13 +32,6 @@
 					</label>
 					<input class="form-control" id="password2" name="password2" type="password">
 				</div>
-				<div class="form-group">
-					 
-					<label for="establecimiento">
-						Establecimiento
-					</label>
-					<input class="form-control" id="establecimiento" name="establecimiento" type="text">
-				</div>
 				<button type="submit" class="btn btn-default">
 					Guardar
 				</button>
@@ -55,7 +48,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th> Usuario,Establecimiento</th>
+						<th>Nickbar</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -64,9 +57,6 @@
 				  <tr>
 					<td>
 						
-						<p>
-							Usuario 1
-						</p> 
 						<p>
 							Establecimiento 1
 						</p>

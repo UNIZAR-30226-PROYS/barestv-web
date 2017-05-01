@@ -19,4 +19,6 @@ public interface EventoInterfazDAO {
 	public boolean remove(String titulo, String user) throws Exception;
 
 	public boolean edit(String usuario, Evento e) throws Exception;
+
+	public boolean removeAll(String nickbar)throws Exception;
 }

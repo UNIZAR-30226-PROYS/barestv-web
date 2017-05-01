@@ -119,7 +119,7 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 	}
 
 	@Override
-	public boolean exist(String usuario) throws Exception {
+	public Boolean exist(String usuario) throws Exception {
 		boolean es= false;
 		
 		try{
@@ -159,6 +159,28 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
             db.ejecutarUpdate(queryString);
 		}catch (Exception e){
 			System.out.println("Error al modificar el passwrod del usuario: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
+	@Override
+	public Boolean remove(String nickbar) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "delete from usuario WHERE nick = \""+nickbar+" \"; ";                    
+           db.ejecutarUpdate(queryString);
+		}catch (Exception e){
+			System.out.println("Error al eliminar usuario: "+e.getMessage());
 			esCorrecto = false;
 		}
 		finally {

@@ -65,7 +65,7 @@ public class UsuarioCreateAction extends ActionSupport implements SessionAware {
 				return "fail";
 			}
 			if(FactoriaDAO.getUsuarioDAO(C.baseDatos).add(usr)){
-				Establecimiento e = new Establecimiento(usr.getUsuario(), "","",true, 0, 0,"", "");
+				Establecimiento e = new Establecimiento(usr.getUsuario(),"Establecimiento de "+usr.getUsuario(),"Descripcion de "+usr.getUsuario(),false, 0, 0,"Direccion de "+usr.getUsuario(),"http://cdn1.buuteeq.com/upload/18551/bar-brandy-2.jpg");
 				if (FactoriaDAO.getEstablecimientoDAO(C.baseDatos).add(e)){
 					addActionMessage("Cuenta creada, en breves un administrador habilitara la cuenta y podras acceder.");
 					return "success";

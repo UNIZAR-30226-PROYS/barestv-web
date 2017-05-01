@@ -19,7 +19,7 @@ public class UsuarioDAOPrueba implements UsuarioInterfazDAO {
 	}
 	
 	@Override
-	public boolean exist(String usuario) throws Exception {
+	public Boolean exist(String usuario) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 		
@@ -39,6 +39,12 @@ public class UsuarioDAOPrueba implements UsuarioInterfazDAO {
 	@Override
 	public Boolean newPassword(Usuario usuario, String password)
 			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean remove(String nickbar) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

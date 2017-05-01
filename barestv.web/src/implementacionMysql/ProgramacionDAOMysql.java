@@ -1,13 +1,8 @@
 package implementacionMysql;
 
 
-import implementacionPrueba.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import beans.*;
 import dao.*;
-import factoria.FactoriaDAO;
 
 
 public class ProgramacionDAOMysql implements ProgramacionInterfazDAO {

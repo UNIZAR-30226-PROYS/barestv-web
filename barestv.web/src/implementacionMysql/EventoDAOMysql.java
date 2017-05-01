@@ -2,18 +2,10 @@ package implementacionMysql;
 
 
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import beans.*;
 import dao.*;
 import db.DBFacade;
-import factoria.FactoriaDAO;
-
-import java.util.Date;
 
 
 public class EventoDAOMysql implements EventoInterfazDAO {
@@ -199,6 +191,28 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		}
 		return esCorrecto;
 		
+	}
+
+	@Override
+	public boolean removeAll(String nickbar) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "delete from programa WHERE bar = \""+nickbar+" \"; ";                    
+           db.ejecutarUpdate(queryString);
+		}catch (Exception e){
+			System.out.println("Error al eliminar eventos: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
 	}
 
 

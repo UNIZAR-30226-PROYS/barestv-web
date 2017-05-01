@@ -63,6 +63,7 @@ public class PasswordEditAction extends ActionSupport implements SessionAware {
 				return "fail";
 			}
 			FactoriaDAO.getUsuarioDAO(C.baseDatos).newPassword(u, new1);
+			addActionMessage("Contraseña cambiada con exito!");
 			return "success";	
 		}catch(Exception e){
 			addActionError(e.getMessage());
