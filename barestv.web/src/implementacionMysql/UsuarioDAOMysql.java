@@ -1,18 +1,14 @@
 package implementacionMysql;
 
-
-
 import java.sql.ResultSet;
 import beans.*;
 import dao.*;
 import db.DBFacade;
 
-
 public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 
 	private DBFacade db = null;
 
-	
 	public UsuarioDAOMysql() throws Exception {
 		// TODO Auto-generated constructor stub
 		try {
@@ -23,10 +19,11 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 			throw new Exception(e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public Usuario get(String usuario, String password) throws Exception {
 		Usuario user = null;
+
 		
 		try{
 			
@@ -46,11 +43,12 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 				
 				db.cerrarConexion();
 			}catch (Exception e1){
-				System.out.println("Error cerrando la conexi?n");
+				System.out.println("Error cerrando la conexion");
 			}
 		}
 		return user;	
 	}
+
 
 
 	@Override
@@ -58,7 +56,7 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		// TODO Auto-generated method stub
 
 		Boolean esCorrecto = true;
-		try{
+		try {
 			db.abrirConexion();
 			 String queryString = "UPDATE usuario " +
                 "SET  clave = '"+usuario.getPassword()+"'"
@@ -69,12 +67,11 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		}catch (Exception e){
 			System.out.println("Error al modificar usuario: "+e.getMessage());
 			esCorrecto = false;
-		}
-		finally {
-			try{
+		} finally {
+			try {
 				db.cerrarConexion();
-			}catch (Exception e1){
-				System.out.println("Error cerrando la conexión");
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
 				esCorrecto = false;
 			}
 		}
@@ -84,23 +81,21 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 	@Override
 	public Boolean add(Usuario usuario) throws Exception {
 		Boolean esCorrecto = true;
-		try{			
+		try {
 			db.abrirConexion();
 			 String queryString = "insert into usuario (nick,clave,permisos) values "
 			 		+ "('"+usuario.getUsuario()+"'"
 					 +",'"+usuario.getPassword()+"'"
 			 		+","+usuario.isEsAdmin()+")";
-			 
 			db.ejecutarUpdate(queryString);
-		}catch (Exception e){
-			System.out.println("Error al insertar usuario: "+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error al insertar usuario: " + e.getMessage());
 			esCorrecto = false;
-		}
-		finally {
-			try{
+		} finally {
+			try {
 				db.cerrarConexion();
-			}catch (Exception e1){
-				System.out.println("Error cerrando la conexión");
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
 				esCorrecto = false;
 			}
 		}
@@ -109,52 +104,48 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 
 	@Override
 	public Boolean exist(String usuario) throws Exception {
-		boolean es= false;
-		
-		try{
-			
+		boolean es = false;
+
+		try {
+
 			db.abrirConexion();
-			String sql =  "select * from usuario where nick like \""+usuario+"\";"; 
+			String sql = "select * from usuario where nick like \"" + usuario + "\";";
 			ResultSet rs = db.ejecutarConsulta(sql);
-          
-			while (rs.next()){                              		                    
-				es = true;			
+
+			while (rs.next()) {
+				es = true;
 			}
-		}catch (Exception e){
-			System.out.println("Error al obtener usuario: "+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error al obtener usuario: " + e.getMessage());
 			throw new Exception(e.getMessage());
-		}
-		finally {
-			try{
-				
+		} finally {
+			try {
+
 				db.cerrarConexion();
-			}catch (Exception e1){
-				System.out.println("Error cerrando la conexi?n");
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
 			}
 		}
-		return es;	
+		return es;
 	}
 
 	@Override
-	public Boolean newPassword(Usuario usuario, String password)
-			throws Exception {
+	public Boolean newPassword(Usuario usuario, String password) throws Exception {
 		Boolean esCorrecto = true;
-		try{
+		try {
 			db.abrirConexion();
-			 String queryString = "UPDATE usuario " +
-                "SET  clave = '"+password+"'"				
-					 + " WHERE  nick = '"+usuario.getUsuario()+"'";                    
-           
-            db.ejecutarUpdate(queryString);
-		}catch (Exception e){
-			System.out.println("Error al modificar el passwrod del usuario: "+e.getMessage());
+			String queryString = "UPDATE usuario " + "SET  clave = '" + password + "'" + " WHERE  nick = '"
+					+ usuario.getUsuario() + "'";
+
+			db.ejecutarUpdate(queryString);
+		} catch (Exception e) {
+			System.out.println("Error al modificar el passwrod del usuario: " + e.getMessage());
 			esCorrecto = false;
-		}
-		finally {
-			try{
+		} finally {
+			try {
 				db.cerrarConexion();
-			}catch (Exception e1){
-				System.out.println("Error cerrando la conexión");
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
 				esCorrecto = false;
 			}
 		}
@@ -164,24 +155,24 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 	@Override
 	public Boolean remove(String nickbar) throws Exception {
 		Boolean esCorrecto = true;
-		try{
+		try {
 			db.abrirConexion();
-			 String queryString = "delete from usuario WHERE nick = \""+nickbar+" \"; ";                    
-           db.ejecutarUpdate(queryString);
-		}catch (Exception e){
-			System.out.println("Error al eliminar usuario: "+e.getMessage());
+			String queryString = "delete from usuario WHERE nick = \"" + nickbar + " \"; ";
+			db.ejecutarUpdate(queryString);
+		} catch (Exception e) {
+			System.out.println("Error al eliminar usuario: " + e.getMessage());
 			esCorrecto = false;
-		}
-		finally {
-			try{
+		} finally {
+			try {
 				db.cerrarConexion();
-			}catch (Exception e1){
-				System.out.println("Error cerrando la conexión");
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
 				esCorrecto = false;
 			}
 		}
 		return esCorrecto;
 	}
+
 
 	@Override
 	public Boolean activate(String nickbar) throws Exception {
@@ -208,7 +199,5 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		return esCorrecto;
 	}
 
-
-		
 
 }
