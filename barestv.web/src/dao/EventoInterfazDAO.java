@@ -21,4 +21,10 @@ public interface EventoInterfazDAO {
 	public boolean edit(String usuario, Evento e) throws Exception;
 
 	public boolean removeAll(String nickbar)throws Exception;
+
+	public ArrayList<Evento> getAllAll()throws Exception;
+
+	public boolean destacar(String titulo, String bar) throws Exception;
+
+	public boolean nodestacar(String titulo, String bar) throws Exception;
 }

@@ -4,50 +4,91 @@ import java.sql.Timestamp;
 
 public class Evento {
     
-	private String nombre;	
-	private String descripcion;
+	private String titulo;	
+	private String bar;
+	private String descr;
+	private Boolean destacado;
 	
 	/* Fecha */
 	private Timestamp inicio;
 	private Timestamp fin;
 	
-	private String categoria;
-	
+	private String cat;
+
 	public Evento(){
-		nombre = "";
-		descripcion ="";
-		inicio = Timestamp.valueOf("2007-09-23 10:10:10.0");
-		fin = Timestamp.valueOf("2007-09-23 10:10:10.0");
-		categoria = "";
+		titulo = null;
+		bar = null;
+		descr = null;
+		destacado = null;
+		inicio = null;
+		fin = null;
 	}
-	
-	
-
-
-	public Evento(String nombre, String descripcion, Timestamp inicio,
-			Timestamp fin, String categoria) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
+	public Evento(String titulo, String bar, String descr, Boolean destacado,
+			Timestamp inicio, Timestamp fin, String cat) {
+		this.titulo = titulo;
+		this.bar = bar;
+		this.descr = descr;
+		this.destacado = destacado;
 		this.inicio = inicio;
 		this.fin = fin;
-		this.categoria = categoria;
+		this.cat = cat;
 	}
 
+	/**
+	 * @return the titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
 
+	/**
+	 * @param titulo the titulo to set
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
+	/**
+	 * @return the bar
+	 */
+	public String getBar() {
+		return bar;
+	}
 
-	
-	
+	/**
+	 * @param bar the bar to set
+	 */
+	public void setBar(String bar) {
+		this.bar = bar;
+	}
 
+	/**
+	 * @return the descr
+	 */
+	public String getDescr() {
+		return descr;
+	}
 
+	/**
+	 * @param descr the descr to set
+	 */
+	public void setDescr(String descr) {
+		this.descr = descr;
+	}
 
+	/**
+	 * @return the destacado
+	 */
+	public Boolean getDestacado() {
+		return destacado;
+	}
 
-
-
-
-	
-
-
+	/**
+	 * @param destacado the destacado to set
+	 */
+	public void setDestacado(Boolean destacado) {
+		this.destacado = destacado;
+	}
 
 	/**
 	 * @return the inicio
@@ -56,18 +97,12 @@ public class Evento {
 		return inicio;
 	}
 
-
-
-
 	/**
 	 * @param inicio the inicio to set
 	 */
 	public void setInicio(Timestamp inicio) {
 		this.inicio = inicio;
 	}
-
-
-
 
 	/**
 	 * @return the fin
@@ -76,9 +111,6 @@ public class Evento {
 		return fin;
 	}
 
-
-
-
 	/**
 	 * @param fin the fin to set
 	 */
@@ -86,34 +118,21 @@ public class Evento {
 		this.fin = fin;
 	}
 
-
-
-
-	public String getNombre() {
-		return nombre;
+	/**
+	 * @return the cat
+	 */
+	public String getCat() {
+		return cat;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	/**
+	 * @param cat the cat to set
+	 */
+	public void setCat(String cat) {
+		this.cat = cat;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	} 
 	
 	
-	
+
 }

@@ -87,9 +87,10 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 			Date s1 = format.parse(fechafinal);
 			
 			
-			Evento e = new Evento(nombre, descripcion, new Timestamp(s.getTime()), new Timestamp(s1.getTime()), categoria);
+			Evento e = new Evento(nombre, u.getUsuario(),descripcion, false,
+					new Timestamp(s.getTime()), new Timestamp(s1.getTime()), categoria);
 			try{
-				FactoriaDAO.getEventoDAO(C.baseDatos).remove(e.getNombre(), u.getUsuario());
+				FactoriaDAO.getEventoDAO(C.baseDatos).remove(e.getTitulo(), u.getUsuario());
 				FactoriaDAO.getEventoDAO(C.baseDatos).add(u.getUsuario(), e);
 			}catch(Exception ex){
 				

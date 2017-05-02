@@ -16,8 +16,23 @@
 			<result name="login">index.jsp</result>
 			
 		</action>
-		<action name="getDestacado">
-			<result>admin_destacado.jsp</result>
+		<action name="getDestacado" class="actions.DestacadosAction">
+			<result name="success">admin_destacado.jsp</result>
+			<result name="fail">admin_destacado.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
+		<action name="destacar" class="actions.DestacadosAction" method="destacar">
+			<result name="success" type="chain">getDestacado</result>
+			<result name="fail">admin_destacado.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
+		</action>
+		<action name="nodestacar" class="actions.DestacadosAction" method="nodestacar">
+			<result name="success" type="chain">getDestacado</result>
+			<result name="fail">admin_destacado.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>
 		</action>
 		<action name="getCategorias">
 			<result>admin_categorias.jsp</result>

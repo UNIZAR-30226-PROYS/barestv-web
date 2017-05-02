@@ -7,61 +7,69 @@
 </jsp:include>
 
 	<div class="row">
-		<div class="page-header">
-			<div class="col-md-6">
-				
-					<h1>
-						Destacado de hoy				
-					</h1>
-					
-						
-					
-				
-			</div>
-			<div class="col-md-6">
-					<h1>
-						<small>Establecimiento 1<small>
-					</h1>
-					<p> Evento 1 (hora), Evento 2 (hora)</p>
-			</div>
-		</div> 
+		<div class="col-md-12">
+			<h3>
+				Destacados		
+			</h3>
+			<table>
+				<tbody>
+					<s:iterator value="destacados" var="programa">
+						<tr>
+							<td>
+								<s:property value="#programa.titulo"/>
+							</td>
+							<td>
+								<s:property value="#programa.bar"/>
+							</td>
+							<td>
+								<s:property value="#programa.inicio" />-<s:property value="#programa.fin"/>
+							</td>
+							<td class="boton">
+								<form role="form" method="post" action="<s:url action="nodestacar"/>">
+									<input type="hidden" name="bar" value="<s:property value="#programa.bar"/>" />
+									<input type="hidden" name="titulo" value="<s:property value="#programa.titulo"/>" />
+									<button type="submit" class="btn btn-danger">
+										Quitar
+									</button>
+								</form>
+							</td>
+						</tr>
+					</s:iterator>
+				</tbody>
+			</table>	
+		</div>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="col-md-12">
+			<h3>
+				Disponibles		
+			</h3>
 			<table class="table">
 
 				<tbody>
-				  <tr>
-					<td>
-						<blockquote>
-						<p>
-							Establecimiento 1
-						</p> 
-						<small>Evento 1 (hora), Evento 2 (hora)</small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Destacado
-						</button>
-					</td>
-				  </tr>
-				 <tr>
-					<td>
-						<blockquote>
-						<p>
-							Establecimiento 2
-						</p> 
-						<small>Evento 1 (hora), Evento 2 (hora)</small>
-						</blockquote>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">
-							Destacado
-						</button>
-					</td>
-				  </tr>
+					<s:iterator value="nodestacados" var="programa">
+						<tr>
+							<td>
+								<s:property value="#programa.titulo"/>
+							</td>
+							<td>
+								<s:property value="#programa.bar"/>
+							</td>
+							<td>
+								<s:property value="#programa.inicio" />-<s:property value="#programa.fin"/>
+							</td>
+							<td class="boton">
+								<form role="form" method="post" action="<s:url action="destacar"/>">
+									<input type="hidden" name="bar" value="<s:property value="#programa.bar"/>" />
+									<input type="hidden" name="titulo" value="<s:property value="#programa.titulo"/>" />
+									<button type="submit" class="btn btn-primary">
+										Añadir
+									</button>
+								</form>
+							</td>
+						</tr>
+					</s:iterator>
 				</tbody>
 			  </table>
 		</div>

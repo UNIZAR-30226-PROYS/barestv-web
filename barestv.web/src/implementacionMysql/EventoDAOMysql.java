@@ -3,6 +3,7 @@ package implementacionMysql;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import beans.*;
 import dao.*;
 import db.DBFacade;
@@ -38,7 +39,11 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 				
 				Evento e= new Evento(
 						//nombre,desc, fechaini,fechafin,categoria
-						rs.getString("titulo"),rs.getString("descr"),rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
+						rs.getString("titulo"),
+						rs.getString("bar"),
+						rs.getString("descr"),
+						rs.getBoolean("destacado"),
+						rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
 						);
 			
 				
@@ -77,7 +82,11 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			while (rs.next()){   			
 				ev= new Evento(
 						//nombre,desc, fechaini,fechafin,categoria
-						rs.getString("titulo"),rs.getString("descr"),rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
+						rs.getString("titulo"),
+						rs.getString("bar"),
+						rs.getString("descr"),
+						rs.getBoolean("destacado"),
+						rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
 						);
 			
 				
@@ -112,13 +121,13 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			
 			db.abrirConexion();
 			String queryString = "insert into programa (titulo, bar, descr, destacado, inicio, fin, cat) values "
-			 		+ "('"+e.getNombre()
+			 		+ "('"+e.getTitulo()
 			 		+"','"+establecimiento
-			 		+"','"+e.getDescripcion()
+			 		+"','"+e.getDescr()
 			 		+"','0"
 			 		+"','"+ini
 			 		+"','"+fin
-			 		+"','"+e.getCategoria()
+			 		+"','"+e.getCat()
 			 		+"');";                    
                         db.ejecutarUpdate(queryString);
 		}catch (Exception ex){
@@ -169,12 +178,12 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 			String ini = sdf.format(e.getInicio());
 			String fin = sdf.format(e.getFin());
 			 String queryString = "UPDATE programa " +
-                "SET  descr = '"+e.getDescripcion()+"'"
-					 + ", destacado = 0"
+                "SET  descr = '"+e.getDescr()+"'"
+					 + ", destacado = "+e.getDestacado()
 					 + ", inicio = '"+ini+"'"
 					 + ", fin = '"+fin+"'"
-					 + ", cat = '"+e.getCategoria()+"'"
-					 + " WHERE  titulo = '"+e.getNombre()+"' and bar = '"+usuario+" ' ";                    
+					 + ", cat = '"+e.getCat()+"'"
+					 + " WHERE  titulo = '"+e.getTitulo()+"' and bar = '"+usuario+" ' ";                    
            
             db.ejecutarUpdate(queryString);
 		}catch (Exception ex){
@@ -202,6 +211,98 @@ public class EventoDAOMysql implements EventoInterfazDAO {
            db.ejecutarUpdate(queryString);
 		}catch (Exception e){
 			System.out.println("Error al eliminar eventos: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
+	@Override
+	public ArrayList<Evento> getAllAll() throws Exception {
+ArrayList<Evento> eventos = null;
+		
+		try{
+			
+			db.abrirConexion();
+			String sql =  "select * from programa;"; //
+			System.out.println(sql);
+			ResultSet rs = db.ejecutarConsulta(sql);
+			eventos = new ArrayList<Evento>();         
+			while (rs.next()){   
+				
+				Evento e= new Evento(
+						//nombre,desc, fechaini,fechafin,categoria
+						rs.getString("titulo"),
+						rs.getString("bar"),
+						rs.getString("descr"),
+						rs.getBoolean("destacado"),
+						rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
+						);
+			
+				
+				eventos.add(e);
+					
+				
+			}
+		}catch (Exception e){
+			System.out.println("Error al obtener eventos all: "+e.getMessage());
+			throw new Exception(e.getMessage());
+		}
+		finally {
+			try{
+				
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexi?n");
+			}
+		}
+		return eventos;	
+	}
+
+	@Override
+	public boolean destacar(String titulo, String bar) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "UPDATE programa " +
+                "SET  destacado = 1"
+					 + " WHERE  titulo = '"+titulo+"' and bar = '"+bar+"' ";                    
+           
+            db.ejecutarUpdate(queryString);
+		}catch (Exception ex){
+			System.out.println("Error al destacar: "+ex.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
+	@Override
+	public boolean nodestacar(String titulo, String bar) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "UPDATE programa " +
+                "SET  destacado = 0"
+					 + " WHERE  titulo = '"+titulo+"' and bar = '"+bar+"' ";                    
+           
+            db.ejecutarUpdate(queryString);
+		}catch (Exception ex){
+			System.out.println("Error al nodestacar: "+ex.getMessage());
 			esCorrecto = false;
 		}
 		finally {

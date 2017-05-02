@@ -49,6 +49,24 @@ public class EventoDAOPrueba implements EventoInterfazDAO {
 		return false;
 	}
 
+	@Override
+	public ArrayList<Evento> getAllAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean destacar(String titulo, String bar) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean nodestacar(String titulo, String bar) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 

@@ -55,12 +55,12 @@ public class EventoRetrieveAction extends ActionSupport implements SessionAware 
 			
 			Evento x = FactoriaDAO.getEventoDAO(C.baseDatos).get(bar, titulo);
 			nombre = titulo;
-			descripcion = x.getDescripcion();
+			descripcion = x.getDescr();
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 			fechainicial = format.format(x.getInicio());
 			fechafinal = format.format(x.getFin());
-			categoria = x.getCategoria();
+			categoria = x.getCat();
 			return "success";
 				
 		}catch(Exception e){
@@ -68,8 +68,8 @@ public class EventoRetrieveAction extends ActionSupport implements SessionAware 
 		}
 	}
 	
-
-
+	
+	
 
 	/**
 	 * @return the categorias
