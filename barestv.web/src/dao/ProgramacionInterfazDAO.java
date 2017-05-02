@@ -1,9 +1,6 @@
 package dao;
 
 
-
-import java.util.ArrayList;
-
 import beans.*;
 
 public interface ProgramacionInterfazDAO {

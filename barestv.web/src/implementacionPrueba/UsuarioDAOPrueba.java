@@ -49,5 +49,11 @@ public class UsuarioDAOPrueba implements UsuarioInterfazDAO {
 		return null;
 	}
 
+	@Override
+	public Boolean activate(String nickbar) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

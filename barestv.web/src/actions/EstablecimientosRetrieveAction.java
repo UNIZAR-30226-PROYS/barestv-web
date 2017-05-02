@@ -41,18 +41,34 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 		Usuario u = (Usuario)session.get("usuario");
 		if (u == null || !u.isEsAdmin()) return "login";
 		
-		
-		establecimientos = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).getAll();
-		for (Establecimiento esta : establecimientos) {
-			if(!esta.isActivado()){
-				establecimientos.remove(esta);
+		ArrayList<Establecimiento> e
+			= FactoriaDAO.getEstablecimientoDAO(C.baseDatos).getAll();
+		establecimientos= new ArrayList<Establecimiento>();
+		for (Establecimiento esta : e) {
+			if(esta.isActivado()){
+				establecimientos.add(esta);
 			}
 		}
 		
 		return "success";
 	}
 	
-	
+	public String soloSinAlta() throws Exception {
+		Usuario u = (Usuario)session.get("usuario");
+		if (u == null || !u.isEsAdmin()) return "login";
+		
+		
+		ArrayList<Establecimiento> e
+			= FactoriaDAO.getEstablecimientoDAO(C.baseDatos).getAll();
+		establecimientos= new ArrayList<Establecimiento>();
+		for (Establecimiento esta : e) {
+			if(!esta.isActivado()){
+				establecimientos.add(esta);
+			}
+		}
+		
+		return "success";
+	}
 	/**
 	 * @return the establecimientos
 	 */

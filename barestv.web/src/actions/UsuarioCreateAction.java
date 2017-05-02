@@ -4,7 +4,6 @@ package actions;
 
 import beans.*;
 
-
 import com.opensymphony.xwork2.ActionSupport;
 
 import configuracion.C;
@@ -29,54 +28,86 @@ public class UsuarioCreateAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	
-	public void validate() {
-		Boolean hayErrores = false;
-		if(usr.getUsuario().equals("")){
-			addFieldError("usr.usuario", getText("errors.vacio"));
-			hayErrores = true;
-		}
-		if(usr.getPassword().equals("")){
-			addFieldError("usr.password", getText("errors.vacio"));
-			hayErrores = true;
-		}
-		if(password1.equals("")){
-			addFieldError("password1", getText("errors.vacio"));
-			hayErrores = true;
-		}
-		if(!password1.equals(usr.getPassword())){
-			addFieldError("password1", getText("errors.duplicated"));
-			addFieldError("usr.password", getText("errors.duplicated"));
-			hayErrores = true;
-		}
-		if (hayErrores){
-			addActionError(getText("errors.login"));
-		}
-	}
-	
 	public String execute() throws Exception {
 		
 		try{
+			Usuario u = (Usuario)session.get("usuario");
+			boolean esAdmin = (u != null && u.isEsAdmin());
+			//Validacion
+			Boolean hayErrores = false;
+			if(usr.getUsuario().equals("")){
+				addFieldError("usr.usuario", getText("errors.vacio"));
+				hayErrores = true;
+			}
+			if(usr.getPassword().equals("")){
+				addFieldError("usr.password", getText("errors.vacio"));
+				hayErrores = true;
+			}
+			if(password1.equals("")){
+				addFieldError("password1", getText("errors.vacio"));
+				hayErrores = true;
+			}
+			if(!password1.equals(usr.getPassword())){
+				addFieldError("password1", getText("errors.duplicated"));
+				addFieldError("usr.password", getText("errors.duplicated"));
+				hayErrores = true;
+			}
+			if (hayErrores){
+				addActionError(getText("errors.login"));
+				
+				if(esAdmin){
+					return "input_admin";
+				}else{
+					return "input";
+				}
+			}
+			//
 			usr.setEsAdmin(false); 
 			usr.setEsAlta(true);
 			
 			if(FactoriaDAO.getUsuarioDAO(C.baseDatos).exist(usr.getUsuario())){
 				addFieldError("usr.usuario", " ya existe");
 				addActionError("El nombre de usuario no esta disponible.");
-				return "fail";
+				
+				if (esAdmin){
+					return "fail_admin";
+				}else{
+					return "fail";
+				}
+				
 			}
 			if(FactoriaDAO.getUsuarioDAO(C.baseDatos).add(usr)){
 				Establecimiento e = new Establecimiento(usr.getUsuario(),"Establecimiento de "+usr.getUsuario(),"Descripcion de "+usr.getUsuario(),false, 0, 0,"Direccion de "+usr.getUsuario(),"http://cdn1.buuteeq.com/upload/18551/bar-brandy-2.jpg");
 				if (FactoriaDAO.getEstablecimientoDAO(C.baseDatos).add(e)){
-					addActionMessage("Cuenta creada, en breves un administrador habilitara la cuenta y podras acceder.");
-					return "success";
+					if (esAdmin){
+						addActionMessage("Cuenta creada. Activa la cuenta en la lista de espera para finalizar.");
+						return "success_admin";
+					}else{
+						addActionMessage("Cuenta creada, en breves un administrador habilitara la cuenta y podras acceder.");
+						return "success";
+					}
+					
+				}else{
+					if (esAdmin){
+						addActionError("En estos momentos no se puede crear una cuenta, intentelo mas tarde. O contacte con un admin.");
+						
+						return "fail_admin";
+					}else{
+						addActionError("En estos momentos no se puede crear una cuenta, intentelo mas tarde. O contacte con un admin.");
+						return "fail";
+					}
+					
+				}
+				
+			}else{
+				if (esAdmin){
+					addActionError("En estos momentos no se puede crear una cuenta, intentelo mas tarde. O contacte con un admin.");
+					
+					return "fail_admin";
 				}else{
 					addActionError("En estos momentos no se puede crear una cuenta, intentelo mas tarde. O contacte con un admin.");
 					return "fail";
 				}
-				
-			}else{
-				addActionError("En estos momentos no se puede crear una cuenta, intentelo mas tarde.");
-				return "fail";
 			}
 			
 				

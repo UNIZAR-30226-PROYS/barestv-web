@@ -8,13 +8,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import configuracion.C;
 import factoria.FactoriaDAO;
-
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;

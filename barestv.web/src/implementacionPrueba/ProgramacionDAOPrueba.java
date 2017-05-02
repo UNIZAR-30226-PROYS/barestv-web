@@ -1,12 +1,8 @@
 package implementacionPrueba;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import beans.*;
 import dao.*;
-import factoria.FactoriaDAO;
+
 
 
 public class ProgramacionDAOPrueba implements ProgramacionInterfazDAO {

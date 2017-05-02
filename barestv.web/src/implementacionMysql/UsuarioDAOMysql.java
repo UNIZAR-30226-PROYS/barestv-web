@@ -3,14 +3,6 @@ package implementacionMysql;
 
 
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import implementacionPrueba.*;
-
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
 import beans.*;
 import dao.*;
 import db.DBFacade;
@@ -39,11 +31,11 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select * from usuario where nick like \""+usuario+"\" and clave like \""+password+"\";"; 
+			String sql =  "select nick, clave, permisos, activado from usuario left join bar on usuario.nick = bar.nickbar where nick = \""+usuario+"\" and clave = \""+password+"\" ;"; 
 			ResultSet rs = db.ejecutarConsulta(sql);
           
 			while (rs.next()){                              		                    
-				user = new Usuario(usuario, rs.getString("clave"), rs.getBoolean("permisos"),rs.getBoolean("esAlta")); // c				
+				user = new Usuario(usuario, rs.getString("clave"), rs.getBoolean("permisos"),rs.getBoolean("activado")); // c				
 			}
 		}catch (Exception e){
 			System.out.println("Error al obtener usuario: "+e.getMessage());
@@ -71,7 +63,6 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 			 String queryString = "UPDATE usuario " +
                 "SET  clave = '"+usuario.getPassword()+"'"
 					 + ", permisos = "+usuario.isEsAdmin()+""
-					 + ", esAlta = "+usuario.isEsAlta()+""
 					 + " WHERE  nick = '"+usuario.getUsuario()+"'";                    
            
             db.ejecutarUpdate(queryString);
@@ -95,14 +86,12 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		Boolean esCorrecto = true;
 		try{			
 			db.abrirConexion();
-			 String queryString = "insert into usuario (nick,clave,permisos,esAlta) values "
+			 String queryString = "insert into usuario (nick,clave,permisos) values "
 			 		+ "('"+usuario.getUsuario()+"'"
 					 +",'"+usuario.getPassword()+"'"
-			 		+","+usuario.isEsAdmin()+""
-					 +","+usuario.isEsAlta()+")";
+			 		+","+usuario.isEsAdmin()+")";
 			 
 			db.ejecutarUpdate(queryString);
-
 		}catch (Exception e){
 			System.out.println("Error al insertar usuario: "+e.getMessage());
 			esCorrecto = false;
@@ -181,6 +170,31 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
            db.ejecutarUpdate(queryString);
 		}catch (Exception e){
 			System.out.println("Error al eliminar usuario: "+e.getMessage());
+			esCorrecto = false;
+		}
+		finally {
+			try{
+				db.cerrarConexion();
+			}catch (Exception e1){
+				System.out.println("Error cerrando la conexión");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+
+	@Override
+	public Boolean activate(String nickbar) throws Exception {
+		Boolean esCorrecto = true;
+		try{
+			db.abrirConexion();
+			 String queryString = "UPDATE bar " +
+                "SET  activado = 1 "				
+					 + " WHERE  nickbar = '"+nickbar+"'";                    
+           
+            db.ejecutarUpdate(queryString);
+		}catch (Exception e){
+			System.out.println("Error al modificar el alta del usuario: "+e.getMessage());
 			esCorrecto = false;
 		}
 		finally {

@@ -21,6 +21,8 @@ public interface UsuarioInterfazDAO {
 
 	public Boolean exist(String usuario) throws Exception;
 
+	public Boolean activate(String nickbar) throws Exception;
+
 	
 	
 	

@@ -14,7 +14,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -55,13 +54,13 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 		}
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try{
-			Date s = format.parse(fechainicial);
+			format.parse(fechainicial);
 		}catch(Exception e){
 			addFieldError("fechainicial", "Formato: dd/MM/yyyy HH:mm");
 			hayErrores = true;
 		}
 		try{
-			Date s = format.parse(fechafinal);
+			format.parse(fechafinal);
 		}catch(Exception e){
 			addFieldError("fechafinal", "Formato: dd/MM/yyyy HH:mm");
 			hayErrores = true;

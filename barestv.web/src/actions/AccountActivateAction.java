@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import configuracion.C;
 import factoria.FactoriaDAO;
+
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -18,62 +19,53 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author alumno
  *
  */
-public class EventoRemoveAction extends ActionSupport implements SessionAware {
+public class AccountActivateAction extends ActionSupport implements SessionAware {
 
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	
-	private String titulo;
-	private String bar;
-	
 	private Map<String, Object> session;
-
+	private String nickbar;
 	
 	public String execute() throws Exception {
 		
 		try{
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if (u.isEsAdmin()) return "error";	
-		
-			FactoriaDAO.getEventoDAO(C.baseDatos).remove(titulo,bar);
-			return "success";
+			if (!u.isEsAdmin()) return "login";
+			
+			boolean correcto = FactoriaDAO.getUsuarioDAO(C.baseDatos).activate(nickbar);
+
+			if (correcto){
+				return "success";
+			}else{
+				return "fail";
+			}
+			
 				
 		}catch(Exception e){
 			return "error";
 		}
 	}
 	
-
+	
 	/**
-	 * @return the titulo
+	 * @return the nickbar
 	 */
-	public String getTitulo() {
-		return titulo;
+	public String getNickbar() {
+		return nickbar;
 	}
 
 
 	/**
-	 * @param titulo the titulo to set
+	 * @param nickbar the nickbar to set
 	 */
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNickbar(String nickbar) {
+		this.nickbar = nickbar;
 	}
 
-
-	/**
-	 * @return the bar
-	 */
-	public String getBar() {
-		return bar;
-	}
-
-
-	/**
-	 * @param bar the bar to set
-	 */
-	public void setBar(String bar) {
-		this.bar = bar;
-	}
 
 
 	public Map<String, Object> getSession() {

@@ -58,17 +58,19 @@ public class SessionCreateAction extends ActionSupport implements SessionAware {
 			addActionError("Usuario o password invalidos.");
 			return "fail";
 		}else {
-			if (!u.isEsAlta()){
-				addActionError("Usuario pendiente de alta");
-				return "fail";
-			}else{
+			if (u.isEsAdmin()){
+				session.put("admin", true);
 				session.put("usuario", u);
+				return "admin";
 				
-				if (u.isEsAdmin()){
-					session.put("admin", true);
-					return "admin";
+			}else{
+				
+				if (!u.isEsAlta()){
+					addActionError("Usuario pendiente de alta");
+					return "noactivado";
 				}else{
-					return "noadmin";
+					session.put("usuario", u);
+					return "normal";
 				}
 			}
 			

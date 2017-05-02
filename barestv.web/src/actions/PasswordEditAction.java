@@ -7,7 +7,6 @@ import beans.*;
 import com.opensymphony.xwork2.ActionSupport;
 
 import configuracion.C;
-import db.DBFacade;
 import factoria.FactoriaDAO;
 
 import java.util.Map;

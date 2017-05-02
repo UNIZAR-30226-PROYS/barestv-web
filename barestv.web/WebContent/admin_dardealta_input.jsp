@@ -64,53 +64,6 @@
   </div>
   <!-- Fin mensajes verificacion -->
 	<hr>
-
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				Lista espera
-			</h3>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Nickbar</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<s:iterator value="establecimientos" var="bar">
-					  <tr>
-						<td>
-							
-							<p>
-								<s:property value="#bar.nickbar"/>
-							</p>
-							
-						</td>
-						<td class="boton">
-							<form role="form" method="post" action="<s:url action="activateAccount"/>">
-								<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="nickbar"/>
-								<button type="submit" class="btn btn-primary">
-									Aceptar
-								</button>
-							</form>
-						</td>
-						<td class="boton">
-							<form role="form" method="post" action="<s:url action="cancelAccount"/>">
-								<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="nickbar"/>
-								<button type="submit" class="btn btn-danger">
-									Rechazar
-								</button>
-							</form>
-						</td>
-					  </tr>
-					 </s:iterator>
-				</tbody>
-			  </table>
-		</div>
-		
-	</div>
  <script src="js/rollups/md5.js"></script>
 <script src="js/components/enc-base64-min.js"></script>
 <script>

@@ -1,7 +1,6 @@
 package beans;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Evento {
     
@@ -20,7 +19,6 @@ public class Evento {
 		inicio = Timestamp.valueOf("2007-09-23 10:10:10.0");
 		fin = Timestamp.valueOf("2007-09-23 10:10:10.0");
 		categoria = "";
-		System.out.println(inicio.toLocaleString());
 	}
 	
 	
@@ -33,7 +31,6 @@ public class Evento {
 		this.inicio = inicio;
 		this.fin = fin;
 		this.categoria = categoria;
-		System.out.println(inicio.toLocaleString());
 	}
 
 
