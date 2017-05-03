@@ -10,7 +10,7 @@
 			<h3>
 				Añadir establecimiento
 			</h3>
-			<form role="form" method="post" action="<s:url action="addUser"/>" onsubmit="cript()">
+			<form role="form" method="post" action="<s:url action="addUser"/>">
 				<div class="form-group">
 					<label for="usuario1">Usuario</label>
 					<s:textfield cssClass="form-control" id="usuario1" name="usr.usuario" type="text" value="%{usr.usuario}"/>
@@ -111,26 +111,4 @@
 		</div>
 		
 	</div>
- <script src="js/rollups/md5.js"></script>
-<script src="js/components/enc-base64-min.js"></script>
-<script>
-	$( document ).ready(function() {
-	  // Handler for .ready() called.
-	    document.getElementById('password1').value = "";
-	    document.getElementById('password2').value = "";
-	});
-		
-	
-   function cript(){
-       var pass2 = CryptoJS.MD5(document.getElementById('password1').value);
-       var pass3 = CryptoJS.MD5(document.getElementById('password2').value);
-       var passString2 = pass2.toString();
-       var passString3 = pass3.toString();
-     	//alert(passString);
-       //console.log(passString2);
-       //console.log(passString3);
-       document.getElementById('password1').value = passString2;
-       document.getElementById('password2').value = passString3;
-   }
-</script>
 <jsp:include page="WEB-INF/jsp/piePagina.jsp"></jsp:include>
