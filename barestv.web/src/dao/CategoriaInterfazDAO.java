@@ -2,20 +2,24 @@ package dao;
 
 
 import beans.*;
+import java.util.ArrayList;
 
 public interface CategoriaInterfazDAO {
 	//Obtener varios
 	//public ArrayList<Usuario> getAll()throws Exception;
 	
-	//Obtener uno
+	//Obtener una
 	public Categoria get(String nombreCat) throws Exception;
+        
+        //Obtener todas
+	public ArrayList<Categoria> getAll() throws Exception;
 
 	//Edicion y eliminacion
-	public Boolean edit(Categoria cat) throws Exception;
-	//public Boolean remove(Usuario usuario) throws Exception;
-	public Boolean add(Categoria cat)throws Exception;
+	public boolean edit(Categoria cat, String nombreCatNuevo) throws Exception;
+	public boolean remove(Categoria cat) throws Exception;
+	public boolean add(Categoria cat)throws Exception;
 
-	boolean exist(String nombreCat) throws Exception;
+	public boolean exist(String nombreCat) throws Exception;
 	
 	
 }

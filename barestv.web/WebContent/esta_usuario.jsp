@@ -11,7 +11,7 @@
 			<h3>
 				Cambiar contraseña
 			</h3>
-			<form role="form" method="post" action="<s:url action="newPassword"/>" onsubmit="cript()">
+			<form role="form" method="post" action="<s:url action="newPassword"/>">
 				<div class="form-group">
 					 
 					<label for="old">
@@ -72,30 +72,4 @@
           </div>
       </div>
   </div>
-    <script src="js/rollups/md5.js"></script>
-<script src="js/components/enc-base64-min.js"></script>
-<script>
-	$( document ).ready(function() {
-	  // Handler for .ready() called.
-		document.getElementById('old').value = "";
-	    document.getElementById('new1').value = "";
-	    document.getElementById('new2').value = "";
-	});
-		
-	
-   function cript(){
-       var pass = CryptoJS.MD5(document.getElementById('old').value);
-       var pass2 = CryptoJS.MD5(document.getElementById('new1').value);
-       var pass3 = CryptoJS.MD5(document.getElementById('new2').value);
-       var passString = pass.toString();
-       var passString2 = pass2.toString();
-       var passString3 = pass3.toString();
-     	//alert(passString);
-       //console.log(passString2);
-       //console.log(passString3);
-       document.getElementById('old').value = passString;
-       document.getElementById('new1').value = passString2;
-       document.getElementById('new2').value = passString3;
-   }
-</script>
 <jsp:include page="WEB-INF/jsp/piePagina.jsp"></jsp:include>

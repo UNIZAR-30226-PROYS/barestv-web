@@ -19,7 +19,7 @@ public class CategoriaDAOMysql implements CategoriaInterfazDAO {
 			db = new DBFacade();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Error creando DBDacade");
+			System.out.println("Error creando DBFacade");
 			throw new Exception(e.getMessage());
 		}
 	}
@@ -29,7 +29,7 @@ public class CategoriaDAOMysql implements CategoriaInterfazDAO {
 		Categoria cat = null;
 		try {
 			db.abrirConexion();
-			String sql = "select nombrecat from categoria where nombrecat like \"" + nombreCat + "\";";
+			String sql = "select nombrecat from categoria where nombrecat ='" + nombreCat + "';";
 			ResultSet rs = db.ejecutarConsulta(sql);
 
 			while (rs.next()) {
@@ -47,16 +47,42 @@ public class CategoriaDAOMysql implements CategoriaInterfazDAO {
 		}
 		return cat;
 	}
-
+        
 	@Override
-	public Boolean edit(Categoria cat) throws Exception {
+	public ArrayList<Categoria> getAll() throws Exception {
+		ArrayList<Categoria> categorias = null;
+		try {
+			db.abrirConexion();
+			String sql = "select nombrecat from categoria;";
+			ResultSet rs = db.ejecutarConsulta(sql);
+                        categorias = new ArrayList<Categoria>();
+			while (rs.next()) {
+				categorias.add(new Categoria(rs.getString("nombrecat")));
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener categorias: " + e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			try {
+				db.cerrarConexion();
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
+			}
+		}
+		return categorias;
+	}
+        
+	@Override
+	public boolean edit(Categoria cat, String nombreCatNuevo) throws Exception {
 		// TODO Auto-generated method stub
 		Boolean esCorrecto = true;
 		try {
 			db.abrirConexion();
-			String queryString = "UPDATE categoria " + "SET  nombrecat = '" + cat.getNombreCat() + "'"
+			String queryString = "UPDATE categoria " + "SET  nombrecat = '" + nombreCatNuevo + "'"
 					+ " WHERE  nombrecat = '" + cat.getNombreCat() + "'";
 			db.ejecutarUpdate(queryString);
+                        db.commit();
+                        cat.setNombreCat(nombreCatNuevo);
 		} catch (Exception e) {
 			System.out.println("Error al modificar categoria: " + e.getMessage());
 			esCorrecto = false;
@@ -72,12 +98,37 @@ public class CategoriaDAOMysql implements CategoriaInterfazDAO {
 	}
 
 	@Override
-	public Boolean add(Categoria cat) throws Exception {
+	public boolean add(Categoria cat) throws Exception {
 		Boolean esCorrecto = true;
 		try {
 			db.abrirConexion();
 			String queryString = "insert into categoria (nombrecat) values " + "('" + cat.getNombreCat() + "')";
 			db.ejecutarUpdate(queryString);
+                        db.commit();
+		} catch (Exception e) {
+			System.out.println("Error al a?adir categoria: " + e.getMessage());
+			esCorrecto = false;
+		} finally {
+			try {
+				db.cerrarConexion();
+			} catch (Exception e1) {
+				System.out.println("Error cerrando la conexion");
+				esCorrecto = false;
+			}
+		}
+		return esCorrecto;
+	}
+        
+	@Override
+	public boolean remove(Categoria cat) throws Exception {
+		// TODO Auto-generated method stub
+		Boolean esCorrecto = true;
+		try {
+			db.abrirConexion();
+			String queryString = "DELETE FROM categoria "
+					+ " WHERE  nombrecat = '" + cat.getNombreCat() + "'";
+			db.ejecutarUpdate(queryString);
+                        db.commit();
 		} catch (Exception e) {
 			System.out.println("Error al modificar categoria: " + e.getMessage());
 			esCorrecto = false;

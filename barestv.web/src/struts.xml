@@ -34,10 +34,34 @@
 			<result name="error">error.jsp</result>
 			<result name="login">index.jsp</result>
 		</action>
-		<action name="getCategorias">
-			<result>admin_categorias.jsp</result>
+		<action name="getCategorias" class="actions.CategoriaAction">
+			<result name="success">admin_categorias.jsp</result>
+			<result name="fail">login.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>	
+                </action>
+		<action name="editCategoria" class="actions.CategoriaAction" method="edit">
+			<result name="continue">admin_categorias.jsp</result>
+			<result name="success" type="redirectAction">getCategorias</result>
+			<result name="fail">admin_categorias.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>	
+                </action>
+		<action name="addCategoria" class="actions.CategoriaAction" method="add">                  
+			<result name="success" type="redirectAction">getCategorias</result>
+			<!-- result name="success">admin_categorias.jsp</result -->
+			<result name="fail">admin_categorias.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>			
 		</action>
-		<action name="getEstablecimientos"  class="actions.EstablecimientosRetrieveAction">
+		<action name="removeCategoria" class="actions.CategoriaAction" method="remove">
+			<result name="success" type="redirectAction">getCategorias</result>
+			<!-- result name="success">admin_categorias.jsp</result -->
+			<result name="fail">admin_categorias.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">index.jsp</result>			
+		</action>
+                <action name="getEstablecimientos"  class="actions.EstablecimientosRetrieveAction">
 			<result name="success">admin_establecimiento.jsp</result>
 			<result name="fail">login.jsp</result>
 			<result name="error">error.jsp</result>

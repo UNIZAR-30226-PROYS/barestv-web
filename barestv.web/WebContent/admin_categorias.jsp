@@ -10,44 +10,72 @@
 <div class="row">
 	<div class="col-md-12">
 		<h3>
-
-
-			<form role="form" class="form-inline">
+<s:if test="#context['struts.actionMapping'].name=='editCategoria'">
+                        <form role="form" class="form-inline" method="post" action="<s:url action="editCategoria"/>">
 				<div class="form-group">
-
-					<label for="exampleInputEmail1"> Añadir categor&#xED;a: </label> <input
-						class="form-control" id="categoria" type="text" name="categoria">
+					<label for="nombreCat"> Editar categor&#xED;a: </label> 
+                                        <s:textfield cssClass="form-control" id="nombreCatNuevo" name="nombreCatNuevo" type="text" value="%{nombreCat}"/>
+                                        <s:hidden cssClass="form-control" id="nombreCat" name="nombreCat" value="%{nombreCat}"/>
 				</div>
-
-
 				<button type="submit" class="btn btn-default">Guardar</button>
 			</form>
+</s:if>
+<s:else>
+                        <form role="form" class="form-inline" method="post" action="<s:url action="addCategoria"/>">
+				<div class="form-group">
+                                <label for="nombreCat"> Añadir categor&#xED;a: </label> 
+                                        <s:textfield cssClass="form-control" id="nombreCat" name="nombreCat" type="text" value=""/>
+				</div>
+				<button type="submit" class="btn btn-default">Guardar</button>
+			</form>
+</s:else>
+
 		</h3>
 	</div>
+</div>
+<div class="row">
+    <s:if test="hasActionErrors()">
+        <!-- Mensajes de error -->
+        <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <h4><s:actionerror/></h4>.
+        </div>
+    </s:if>
+    <s:if test="hasActionMessages()">
+        <!-- Mensaje de exito -->
+        <div class="alert alert-dismissable alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <h4><s:actionmessage/></h4>。
+        </div>
+    </s:if>
+
 </div>
 <hr>
 <div class="row">
 	<div class="col-md-12">
 		<table class="table">
 			<tbody>
+                            <s:iterator value="categorias" var="cat">
 				<tr>
-					<td>Categoria 1</td>
+					<td><s:property value="#cat.nombreCat"/></td>
 					<td class="boton">
-						<button type="button" class="btn btn-primary">Modificar</button>
+                                            <form role="form" method="post" action="<s:url action="editCategoria"/>">
+						<button type="submit" class="btn btn-primary">Modificar</button>
+                                                <input type="hidden" value="<s:property value="#cat.nombreCat"/>" name="nombreCat"/>
+                                            </form>
 					</td>
 					<td class="boton">
-						<button type="button" class="btn btn-danger">Eliminar</button>
+                                            <form role="form" method="post" action="<s:url action="removeCategoria"/>">
+						<button type="submit" class="btn btn-danger">Eliminar</button>
+                                                <input type="hidden" value="<s:property value="#cat.nombreCat"/>" name="nombreCat"/>
+                                            </form>
 					</td>
-				</tr>
-				<tr>
-					<td>Categoria 2</td>
-					<td class="boton">
-						<button type="button" class="btn btn-primary">Modificar</button>
-					</td>
-					<td class="boton">
-						<button type="button" class="btn btn-danger">Eliminar</button>
-					</td>
-				</tr>
+                                </tr>
+                            </s:iterator>    
 			</tbody>
 		</table>
 	</div>

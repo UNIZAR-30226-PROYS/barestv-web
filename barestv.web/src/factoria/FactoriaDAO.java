@@ -49,4 +49,15 @@ public class FactoriaDAO {
 		}
 		
 	}
+	
+	public static CategoriaInterfazDAO getCategoriaDAO (String basededatos) throws Exception{
+		if ("prueba".equals(basededatos)){
+			return new CategoriaDAOPrueba();
+		}else if ("mysql".equals(basededatos)){
+			return new CategoriaDAOMysql();
+		}else {
+			return null;
+		}
+		
+	}
 }
