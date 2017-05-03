@@ -28,7 +28,7 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select nick, clave, permisos, activado from usuario left join bar on usuario.nick = bar.nickbar where nick = \""+usuario+"\" and clave = \""+password+"\" ;"; 
+			String sql =  "select nick, clave, permisos, activado from usuario left join bar on usuario.nick = bar.nickbar where nick = '"+usuario+"' and clave = SHA2('"+password+"', 512) ;"; 
 			ResultSet rs = db.ejecutarConsulta(sql);
           
 			while (rs.next()){                              		                    
@@ -58,8 +58,8 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		Boolean esCorrecto = true;
 		try {
 			db.abrirConexion();
-			 String queryString = "UPDATE usuario " +
-                "SET  clave = '"+usuario.getPassword()+"'"
+			 String queryString = "UPDATE usuario " 
+                                         + "SET  clave = SHA2('"+usuario.getPassword()+"', 512)"
 					 + ", permisos = "+usuario.isEsAdmin()+""
 					 + " WHERE  nick = '"+usuario.getUsuario()+"'";                    
            
@@ -85,7 +85,7 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 			db.abrirConexion();
 			 String queryString = "insert into usuario (nick,clave,permisos) values "
 			 		+ "('"+usuario.getUsuario()+"'"
-					 +",'"+usuario.getPassword()+"'"
+					+", SHA2('"+usuario.getPassword()+"', 512)"
 			 		+","+usuario.isEsAdmin()+")";
 			db.ejecutarUpdate(queryString);
 		} catch (Exception e) {
@@ -134,12 +134,13 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		Boolean esCorrecto = true;
 		try {
 			db.abrirConexion();
-			String queryString = "UPDATE usuario " + "SET  clave = '" + password + "'" + " WHERE  nick = '"
-					+ usuario.getUsuario() + "'";
+			String queryString = "UPDATE usuario " 
+                                        + "SET  clave = SHA2('" + password + "', 512)" 
+                                        + " WHERE  nick = '" + usuario.getUsuario() + "'";
 
 			db.ejecutarUpdate(queryString);
 		} catch (Exception e) {
-			System.out.println("Error al modificar el passwrod del usuario: " + e.getMessage());
+			System.out.println("Error al modificar el password del usuario: " + e.getMessage());
 			esCorrecto = false;
 		} finally {
 			try {
@@ -157,7 +158,7 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		Boolean esCorrecto = true;
 		try {
 			db.abrirConexion();
-			String queryString = "delete from usuario WHERE nick = \"" + nickbar + " \"; ";
+			String queryString = "delete from usuario WHERE nick = '" + nickbar + "'; ";
 			db.ejecutarUpdate(queryString);
 		} catch (Exception e) {
 			System.out.println("Error al eliminar usuario: " + e.getMessage());
@@ -179,9 +180,9 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
 		Boolean esCorrecto = true;
 		try{
 			db.abrirConexion();
-			 String queryString = "UPDATE bar " +
-                "SET  activado = 1 "				
-					 + " WHERE  nickbar = '"+nickbar+"'";                    
+			 String queryString = "UPDATE bar " 
+                                        + "SET  activado = 1 "				
+					+ " WHERE  nickbar = '"+nickbar+"'";                    
            
             db.ejecutarUpdate(queryString);
 		}catch (Exception e){
