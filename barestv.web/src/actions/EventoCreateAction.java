@@ -66,11 +66,6 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 			hayErrores = true;
 		}
 		if (hayErrores){
-			categorias = new ArrayList<String>();
-			categorias.add("Deporte");
-			categorias.add("Musica");
-			categorias.add("Cine");
-			categorias.add("Series");
 			addActionError(getText("errors.login"));
 		}
 	}
@@ -78,6 +73,12 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 	public String execute() throws Exception {
 		
 		try{
+                        categorias = new ArrayList<String>();
+                        ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
+                        for (Categoria c : cats){
+                            categorias.add(c.getNombreCat());
+                        }
+                        
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
 			if (u.isEsAdmin()) return "error";	

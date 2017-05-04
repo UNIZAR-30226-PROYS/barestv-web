@@ -46,12 +46,11 @@ public class EventoRetrieveAction extends ActionSupport implements SessionAware 
 			if (u == null) return "login";
 			if (u.isEsAdmin()) return "error";
 			
-			//
 			categorias = new ArrayList<String>();
-			categorias.add("Deporte");
-			categorias.add("Musica");
-			categorias.add("Cine");
-			categorias.add("Series");
+                        ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
+                        for (Categoria c : cats){
+                            categorias.add(c.getNombreCat());
+                        }
 			
 			Evento x = FactoriaDAO.getEventoDAO(C.baseDatos).get(bar, titulo);
 			nombre = titulo;

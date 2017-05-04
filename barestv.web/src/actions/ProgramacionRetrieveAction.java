@@ -43,10 +43,11 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 			if (u.isEsAdmin()) return "error";	
 			
 			categorias = new ArrayList<String>();
-			categorias.add("Deporte");
-			categorias.add("Musica");
-			categorias.add("Cine");
-			categorias.add("Series");
+                        ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
+                        for (Categoria c : cats){
+                            categorias.add(c.getNombreCat());
+                        }
+                        
 			user = u.getUsuario();
 			ArrayList<Evento> eventos = FactoriaDAO.getEventoDAO(C.baseDatos).getAll(u.getUsuario());
 			programacion = new HashMap<String,ArrayList<Evento>>();
@@ -69,6 +70,9 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 			return "error";
 		}
 	}
+
+    public ProgramacionRetrieveAction() {
+    }
 	
 
 
