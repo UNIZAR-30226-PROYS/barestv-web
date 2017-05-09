@@ -30,9 +30,7 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 
 
 	ArrayList<Establecimiento> establecimientos;
-	/**
-	 * 
-	 */
+	String filtro; // con filtro activado se mira el nickbar, nombre o direccion para proporcionar la lista
 	private static final long serialVersionUID = 7067934472341215569L;
 	private Map<String, Object> session;
 
@@ -44,11 +42,22 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 		ArrayList<Establecimiento> e
 			= FactoriaDAO.getEstablecimientoDAO(C.baseDatos).getAll();
 		establecimientos= new ArrayList<Establecimiento>();
-		for (Establecimiento esta : e) {
-			if(esta.isActivado()){
-				establecimientos.add(esta);
+		if(filtro != null){
+			for (Establecimiento esta : e) {
+				if(esta.isActivado() && (esta.getNombre().contains(filtro) || esta.getNickbar().contains(filtro) || esta.getDireccion().contains(filtro))){
+					
+					establecimientos.add(esta);
+				}
+			}
+		}else{
+			for (Establecimiento esta : e) {
+				if(esta.isActivado()){
+					
+					establecimientos.add(esta);
+				}
 			}
 		}
+		
 		
 		return "success";
 	}
@@ -83,7 +92,21 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 	public void setEstablecimientos(ArrayList<Establecimiento> establecimientos) {
 		this.establecimientos = establecimientos;
 	}
+	
 
+	/**
+	 * @return the filtro
+	 */
+	public String getFiltro() {
+		return filtro;
+	}
+
+	/**
+	 * @param filtro the filtro to set
+	 */
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
 
 	public Map<String, Object> getSession() {
 		return session;

@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+
+<% 
+String blahValue = "1"; 
+if(session.getAttribute("usuario")!=null && session.getAttribute("admin")!= null){
+   blahValue = "0";
+}
+%>
 <jsp:include page="WEB-INF/jsp/cabecera.jsp">
       <jsp:param name="title" value="Programacion" />
-      <jsp:param name="active" value="1" />
+      <jsp:param name="active" value="<%=blahValue%>" />
 </jsp:include>
 
 	<div class="row">
 		<div class="col-md-12">
 			<h3>
-				Añadir evento a la programación del establecimiento:
+				Añadir evento a la programación del establecimiento: <s:property value="user"/>
 			</h3>
 			<form role="form" method="post" action="<s:url action="addEvento"/>">
 				<div class="form-group">
@@ -68,6 +75,7 @@
 					<s:select list="categorias" cssclass="form-control" id="categoria" name="categoria" >
 					  </s:select>
 				</div>
+				<input type="hidden" value='<s:property value="user"/>' name="user"/>
 				<button type="submit" class="btn btn-default">
 					Guardar
 				</button>
@@ -98,15 +106,15 @@
 								<blockquote>
 								
 								<p>
-									<span class="label label-default"><s:date name="fechainicio" format="HH:mm" />-<s:date name="fechafin" format="HH:mm" /></span>  <s:property value="#evento.nombre"/> 
+									<span class="label label-default"><s:date name="fechainicio" format="HH:mm" /> - <s:date name="fechafin" format="HH:mm" /></span>  <s:property value="#evento.titulo"/> 
 								</p> 
-								<small><s:property value="#evento.descripcion"/></small>
-								<small>Categoria: <s:property value="#evento.categoria"/></small>
+								<small><s:property value="#evento.descr"/></small>
+								<small>Categoria: <s:property value="#evento.cat"/></small>
 								</blockquote>
 							</td>
 							<td class="boton">
 								<form role="form" method="post" action="<s:url action="getEvento"/>">
-									<input type="hidden" name="titulo" value="<s:property value="#evento.nombre"/>"/>
+									<input type="hidden" name="titulo" value="<s:property value="#evento.titulo"/>"/>
 									<input type="hidden" name="bar" value="<s:property value="user"/>"/>
 									<button type="submit" class="btn btn-primary">
 										Modificar
@@ -115,7 +123,7 @@
 							</td>
 							<td class="boton">
 								<form role="form" method="post" action="<s:url action="removeEvento"/>">
-									<input type="hidden" name="titulo" value="<s:property value="#evento.nombre"/>"/>
+									<input type="hidden" name="titulo" value="<s:property value="#evento.titulo"/>"/>
 									<input type="hidden" name="bar" value="<s:property value="user"/>"/>
 									<button type="submit" class="btn btn-danger">
 										Eliminar

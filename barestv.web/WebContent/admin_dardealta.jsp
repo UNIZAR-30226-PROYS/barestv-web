@@ -13,7 +13,7 @@
 			<form role="form" method="post" action="<s:url action="addUser"/>">
 				<div class="form-group">
 					<label for="usuario1">Usuario</label>
-					<s:textfield cssClass="form-control" id="usuario1" name="usr.usuario" type="text" value="%{usr.usuario}"/>
+					<s:textfield cssClass="form-control" id="usuario1" name="usr.usuario" type="text" value="%{usr.usuario}" maxlength="10"/>
 				</div>
 				
 				<div class="form-group">

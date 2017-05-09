@@ -10,12 +10,20 @@
 			<h3>
 				Establecimientos registrados
 			</h3>
-			<p>Lista de establecimientos en el sistema, desde aqui se podra modificar o eliminar un establecimiento.
+			<h4>Filtrar establecimientos:</h4>
+			<form method="post" action="<s:url action="getEstablecimientos"/>">
+				<input type="text" value="<s:property value="filtro"/>" name="filtro"/>
+				<button type="submit" class="btn btn-primary">
+					Filtrar
+				</button>
+			</form>
+			<p>Lista de establecimientos en el sistema, desde aqui se podra modificar o eliminar un establecimiento.</p>
 			<table class="table">
 				<thead>
 				  <tr>
-					<th>Nombre del establecimiento</th>
-					<th>Modificar los atributos</th>
+					<th>Establecimiento</th>
+					<th>Editar programación</th>
+					<th>Editar datos</th>
 					<th>Eliminar del sistema</th>
 				  </tr>
 				</thead>
@@ -31,7 +39,15 @@
 						</blockquote>
 					</td>
 					<td class="boton">
-						<form role="form" method="post" action="<s:url action="getEstablecimiento"/>">
+						<form method="post" action="<s:url action="getProgramacion"/>">
+							<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="user"/>
+							<button type="submit" class="btn btn-primary">
+								Modificar
+							</button>
+						</form>
+					</td>
+					<td class="boton">
+						<form method="post" action="<s:url action="getEstablecimiento"/>">
 							<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="nickbar"/>
 							<button type="submit" class="btn btn-primary">
 								Modificar
@@ -39,7 +55,7 @@
 						</form>
 					</td>
 					<td class="boton">
-						<form role="form" method="post" action="<s:url action="deleteAccout"/>">
+						<form method="post" action="<s:url action="deleteAccout"/>">
 							<input type="hidden" value="<s:property value="#bar.nickbar"/>" name="nickbar"/>
 							<button type="submit" class="btn btn-danger">
 								Eliminar

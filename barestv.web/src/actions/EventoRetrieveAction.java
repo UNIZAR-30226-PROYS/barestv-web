@@ -34,23 +34,24 @@ public class EventoRetrieveAction extends ActionSupport implements SessionAware 
 	private String fechafinal;
 	private String categoria;
 	
+	private String user;
 	private ArrayList<String> categorias;
 	
 	private Map<String, Object> session;
 
 	
 	public String execute() throws Exception {
-		
+		user = bar;
 		try{
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if (u.isEsAdmin()) return "error";
+			
 			
 			categorias = new ArrayList<String>();
-                        ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
-                        for (Categoria c : cats){
-                            categorias.add(c.getNombreCat());
-                        }
+            ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
+            for (Categoria c : cats){
+                categorias.add(c.getNombreCat());
+            }
 			
 			Evento x = FactoriaDAO.getEventoDAO(C.baseDatos).get(bar, titulo);
 			nombre = titulo;
@@ -60,6 +61,7 @@ public class EventoRetrieveAction extends ActionSupport implements SessionAware 
 			fechainicial = format.format(x.getInicio());
 			fechafinal = format.format(x.getFin());
 			categoria = x.getCat();
+			
 			return "success";
 				
 		}catch(Exception e){
@@ -69,6 +71,26 @@ public class EventoRetrieveAction extends ActionSupport implements SessionAware 
 	
 	
 	
+
+	/**
+	 * @return the user
+	 */
+	public String getUser() {
+		return user;
+	}
+
+
+
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+
+
 
 	/**
 	 * @return the categorias

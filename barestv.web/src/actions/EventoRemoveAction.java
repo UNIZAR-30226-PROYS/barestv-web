@@ -24,16 +24,17 @@ public class EventoRemoveAction extends ActionSupport implements SessionAware {
 	
 	private String titulo;
 	private String bar;
+	private String user;
 	
 	private Map<String, Object> session;
 
 	
 	public String execute() throws Exception {
-		
+		user = bar;
 		try{
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if (u.isEsAdmin()) return "error";	
+
 		
 			FactoriaDAO.getEventoDAO(C.baseDatos).remove(titulo,bar);
 			return "success";
@@ -43,6 +44,22 @@ public class EventoRemoveAction extends ActionSupport implements SessionAware {
 		}
 	}
 	
+
+	/**
+	 * @return the user
+	 */
+	public String getUser() {
+		return user;
+	}
+
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 
 	/**
 	 * @return the titulo

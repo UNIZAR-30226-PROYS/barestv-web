@@ -151,7 +151,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		Boolean esCorrecto = true;
 		try{
 			db.abrirConexion();
-			 String queryString = "delete from programa WHERE titulo = \""+titulo+"\" and bar = \""+user+" \"; ";                    
+			 String queryString = "delete from programa WHERE titulo = \""+titulo+"\" and bar = \""+user+"\"; ";                    
            db.ejecutarUpdate(queryString);
 		}catch (Exception e){
 			System.out.println("Error al eliminar evento: "+e.getMessage());
@@ -183,7 +183,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 					 + ", inicio = '"+ini+"'"
 					 + ", fin = '"+fin+"'"
 					 + ", cat = '"+e.getCat()+"'"
-					 + " WHERE  titulo = '"+e.getTitulo()+"' and bar = '"+usuario+" ' ";                    
+					 + " WHERE  titulo = '"+e.getTitulo()+"' and bar = '"+usuario+"' ";                    
            
             db.ejecutarUpdate(queryString);
 		}catch (Exception ex){
@@ -207,7 +207,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		Boolean esCorrecto = true;
 		try{
 			db.abrirConexion();
-			 String queryString = "delete from programa WHERE bar = \""+nickbar+" \"; ";                    
+			 String queryString = "delete from programa WHERE bar = \""+nickbar+"\"; ";                    
            db.ejecutarUpdate(queryString);
 		}catch (Exception e){
 			System.out.println("Error al eliminar eventos: "+e.getMessage());

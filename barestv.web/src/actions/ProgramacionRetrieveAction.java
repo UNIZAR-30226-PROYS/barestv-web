@@ -33,23 +33,28 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 	
 	private ArrayList<String> categorias;
 	
-	private String user;
+	private String user;	//Atributo para la vista, indica de quien es la programación.
 	
 	public String execute() throws Exception {
 		
 		try{
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if (u.isEsAdmin()) return "error";	
+			
 			
 			categorias = new ArrayList<String>();
-                        ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
-                        for (Categoria c : cats){
-                            categorias.add(c.getNombreCat());
-                        }
-                        
-			user = u.getUsuario();
-			ArrayList<Evento> eventos = FactoriaDAO.getEventoDAO(C.baseDatos).getAll(u.getUsuario());
+            ArrayList<Categoria> cats = FactoriaDAO.getCategoriaDAO(C.baseDatos).getAll();
+            for (Categoria c : cats){
+                categorias.add(c.getNombreCat());
+            }
+           
+            if (u.isEsAdmin()){
+            	//Si es admin nickbar tendra que venir dado
+            }else{
+            	user = u.getUsuario(); // Usuario del cual se saca la programación
+            }
+			
+			ArrayList<Evento> eventos = FactoriaDAO.getEventoDAO(C.baseDatos).getAll(user);
 			programacion = new HashMap<String,ArrayList<Evento>>();
 			for (Evento evento : eventos) {
 				DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -71,11 +76,6 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 		}
 	}
 
-    public ProgramacionRetrieveAction() {
-    }
-	
-
-
 	public ArrayList<String> getCategorias() {
 		return categorias;
 	}
@@ -91,6 +91,11 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 	
 
 
+
+
+
+	
+
 	/**
 	 * @return the user
 	 */
@@ -98,16 +103,12 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 		return user;
 	}
 
-
-
 	/**
 	 * @param user the user to set
 	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
-
-
 
 	/**
 	 * @return the programacion

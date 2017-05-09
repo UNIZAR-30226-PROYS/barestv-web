@@ -33,6 +33,7 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 	private String fechainicial;
 	private String fechafinal;
 	private String categoria;
+	private String user;
 	
 	private Map<String, Object> session;
 	
@@ -81,20 +82,26 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
                         
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if (u.isEsAdmin()) return "error";	
+
+			
 			
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			Date s = format.parse(fechainicial);
 			Date s1 = format.parse(fechafinal);
 			
 			
-			Evento e = new Evento(nombre, u.getUsuario(),descripcion, false,
+			if (u.isEsAdmin()){
+				
+			}else{
+				user = u.getUsuario();
+			}
+			Evento e = new Evento(nombre, user,descripcion, false,
 					new Timestamp(s.getTime()), new Timestamp(s1.getTime()), categoria);
 			try{
-				FactoriaDAO.getEventoDAO(C.baseDatos).remove(e.getTitulo(), u.getUsuario());
-				FactoriaDAO.getEventoDAO(C.baseDatos).add(u.getUsuario(), e);
+				FactoriaDAO.getEventoDAO(C.baseDatos).remove(e.getTitulo(), user);
+				FactoriaDAO.getEventoDAO(C.baseDatos).add(user, e);
 			}catch(Exception ex){
-				
+				System.out.println("Error con la factoria Evento y "+user);
 			}
 			
 			return "success";
@@ -107,6 +114,21 @@ public class EventoCreateAction extends ActionSupport implements SessionAware {
 	
 
 	
+
+	/**
+	 * @return the user
+	 */
+	public String getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 	/**
 	 * @return the fechainicial
 	 */

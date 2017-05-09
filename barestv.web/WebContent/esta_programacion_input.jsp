@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3>
-				Añadir evento a la programación del establecimiento:
+				Añadir evento a la programación del establecimiento: <s:property value="user"/>
 			</h3>
 			<form role="form" method="post" action="<s:url action="addEvento"/>">
 				<div class="form-group">
@@ -68,6 +68,7 @@
 					<s:select list="categorias" cssclass="form-control" id="categoria" name="categoria" >
 					  </s:select>
 				</div>
+				<input type="hidden" value='<s:property value="user"/>' name="user"/>
 				<button type="submit" class="btn btn-default">
 					Guardar
 				</button>
