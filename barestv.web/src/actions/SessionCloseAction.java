@@ -20,7 +20,7 @@ public class SessionCloseAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 
 	public String execute() throws Exception {
-		addActionMessage(getText("exito¡£deslogear"));
+		addActionMessage("Deslogeado con éxito");
 		session.clear();
 		return "success";
 		

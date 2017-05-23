@@ -95,7 +95,7 @@ public class DBFacade {
 			result = prepS.executeQuery();
 
 		} catch (SQLException e) {
-			throw new Exception("Error ejecutando consulta sin prametros ");
+			throw new Exception("Error ejecutando consulta sin parametros "+e.getMessage());
 		} finally {
 
 		}
