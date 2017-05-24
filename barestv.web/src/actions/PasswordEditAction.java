@@ -56,7 +56,7 @@ public class PasswordEditAction extends ActionSupport implements SessionAware {
 		try{
 			Usuario u = (Usuario)session.get("usuario");
 			if (u == null) return "login";
-			if(!u.getPassword().equals(old)){
+			if(FactoriaDAO.getUsuarioDAO(C.baseDatos).check(u,old)){
 				addFieldError("old", " no corresponde.");
 				addActionError("Revise el formulario. Si persistente los problemas contacte con un administrador para mas información.");
 				return "fail";

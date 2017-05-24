@@ -55,5 +55,11 @@ public class UsuarioDAOPrueba implements UsuarioInterfazDAO {
 		return null;
 	}
 
+	@Override
+	public Boolean check(Usuario u, String old) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

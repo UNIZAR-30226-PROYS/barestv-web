@@ -1,6 +1,7 @@
 package implementacionMysql;
 
 import java.sql.ResultSet;
+
 import beans.*;
 import dao.*;
 import db.DBFacade;
@@ -189,5 +190,32 @@ public class UsuarioDAOMysql implements UsuarioInterfazDAO {
         }
         return esCorrecto;
     }
+
+	@Override
+	public Boolean check(Usuario u, String old) throws Exception {
+		 boolean es = false;
+
+        try {
+
+            db.abrirConexion();
+            String sql = "select * from usuario where nick like ? and clave like ?;";
+            ResultSet rs = db.ejecutarConsulta(sql, u.getUsuario(),old);
+
+            while (rs.next()) {
+                es = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error checkear usuario: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            try {
+
+                db.cerrarConexion();
+            } catch (Exception e1) {
+                System.out.println("Error cerrando la conexion");
+            }
+        }
+        return es;
+	}
 
 }

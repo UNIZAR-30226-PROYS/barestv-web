@@ -23,6 +23,8 @@ public interface UsuarioInterfazDAO {
 
 	public Boolean activate(String nickbar) throws Exception;
 
+	public Boolean check(Usuario u, String old) throws Exception;
+
 	
 	
 	

@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="col-sm-6 col-md-4 col-md-offset-2">
-		<h3>Login</h3>
+		<h3>Iniciar sesión</h3>
 		<form role="form" method="post" action="<s:url action="logearse"/>">
 			<div class="form-group">
 				<label for="usuario">Usuario</label> 

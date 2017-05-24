@@ -61,7 +61,7 @@
 									<a href="<s:url  action="getDestacado" />">Destacado</a>
 								</li>
 								<li <% if (a!=null && a.equals("3")){%>class="active" <%}%>>
-									<a href="<s:url  action="getCategorias" />">Categorias</a>
+									<a href="<s:url  action="getCategorias" />">Categorías</a>
 								</li>
 							</ul>
 							<%}%>
@@ -71,7 +71,7 @@
 									<a href="<s:url  action="getEstablecimiento" />">Establecimiento</a>
 								</li>
 								<li <% if (a!=null && a.equals("1")){%>class="active" <%}%>>
-									<a href="<s:url  action="getProgramacion" />">Programacion</a>
+									<a href="<s:url  action="getProgramacion" />">Programación</a>
 								</li>
 							</ul>
 							<%}%>
@@ -86,7 +86,7 @@
 								 </li>	
 						      <%  }else{%>
 								<li <% if (a!=null && a.equals("-1")){%>class="active" <%}%>>
-									<a href="<s:url  action="login" />">Sin logear</a>
+									<a href="<s:url  action="login" />">Iniciar sesión</a>
 								</li>
 								 <%  }%>
 							</ul>
