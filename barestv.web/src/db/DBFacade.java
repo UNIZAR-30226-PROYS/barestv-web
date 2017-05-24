@@ -56,7 +56,7 @@ public class DBFacade {
 	public void abrirConexion() throws Exception {
 		try {
 			con = source.getConnection();
-			con.setAutoCommit(false);
+			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			throw new Exception("Error abriendo la conexión.");
 		}
