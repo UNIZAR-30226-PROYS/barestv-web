@@ -44,7 +44,7 @@ public class EstablecimientosRetrieveAction extends ActionSupport implements Ses
 		establecimientos= new ArrayList<Establecimiento>();
 		if(filtro != null){
 			for (Establecimiento esta : e) {
-				if(esta.isActivado() && (esta.getNombre().contains(filtro) || esta.getNickbar().contains(filtro) || esta.getDireccion().contains(filtro))){
+				if(esta.isActivado() && (esta.getNombre().toLowerCase().contains(filtro.toLowerCase()) || esta.getNickbar().toLowerCase().contains(filtro.toLowerCase()) || esta.getDireccion().toLowerCase().contains(filtro.toLowerCase()))){
 					
 					establecimientos.add(esta);
 				}

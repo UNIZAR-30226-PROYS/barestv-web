@@ -34,6 +34,7 @@ public class DestacadosAction extends ActionSupport implements SessionAware {
 	String filtro = "";
 	String titulo ="";
 	String bar ="";
+
 	
 	/**
 	 * 
@@ -52,15 +53,26 @@ public class DestacadosAction extends ActionSupport implements SessionAware {
 		nodestacados = new ArrayList<Evento>();
 		for (Evento event : e) {
 			if(event.getDestacado()){
-				destacados.add(event);
+				if(!filtro.equals("")){
+					//Se ha puesto un filtro con lo que 
+					// solo pondran aquellos que el bar o nombre coincida
+					if(event.getBar().toLowerCase().contains(filtro.toLowerCase())
+					   || event.getCat().toLowerCase().contains(filtro.toLowerCase())
+					   || event.getDescr().toLowerCase().contains(filtro.toLowerCase())
+					   || event.getTitulo().toLowerCase().contains(filtro.toLowerCase())){
+						destacados.add(event);
+					}
+				}else{
+					destacados.add(event);
+				}
 			}else{
 				if(!filtro.equals("")){
 					//Se ha puesto un filtro con lo que 
 					// solo pondran aquellos que el bar o nombre coincida
-					if(event.getBar().contains(filtro)
-					   || event.getCat().contains(filtro)
-					   || event.getDescr().contains(filtro)
-					   || event.getTitulo().contains(filtro)){
+					if(event.getBar().toLowerCase().contains(filtro.toLowerCase())
+					   || event.getCat().toLowerCase().contains(filtro.toLowerCase())
+					   || event.getDescr().toLowerCase().contains(filtro.toLowerCase())
+					   || event.getTitulo().toLowerCase().contains(filtro.toLowerCase())){
 						nodestacados.add(event);
 					}
 				}else{

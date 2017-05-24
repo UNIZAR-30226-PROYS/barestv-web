@@ -5,12 +5,19 @@
       <jsp:param name="title" value="Destacado" />
       <jsp:param name="active" value="2" />
 </jsp:include>
-
+	<h4>Busqueda</h4>
+	<form method="post" action="<s:url action="getDestacado"/>">
+		<input type="text" value="<s:property value="filtro"/>" name="filtro"/>
+		<button type="submit" class="btn btn-primary">
+			Filtrar
+		</button>
+	</form>
 	<div class="row">
 		<div class="col-md-12">
 			<h3>
 				Destacados		
 			</h3>
+			
 			<table>
 				<tbody>
 					<s:iterator value="destacados" var="programa">
