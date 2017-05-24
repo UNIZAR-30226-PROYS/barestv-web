@@ -103,11 +103,11 @@ public class EstablecimientoDAOMysql implements EstablecimientoInterfazDAO {
 			 		+","+est.getLng()+""
 			 		+",'"+est.getDireccion()+"'"
 					 +",'"+est.getUrlimagen()+"')";
-			 
+			 System.out.println(queryString);
 			db.ejecutarUpdate(queryString);
 
 		}catch (Exception e){
-			System.out.println("Error al modificar establecimiento: "+e.getMessage());
+			System.out.println("Error al insertar establecimiento: "+e.getMessage());
 			esCorrecto = false;
 		}
 		finally {

@@ -93,8 +93,9 @@ public class DBFacade {
 			}
 			prepS = con.prepareStatement(statement);
 			result = prepS.executeQuery();
-
+			
 		} catch (SQLException e) {
+			
 			throw new Exception("Error ejecutando consulta sin parametros "+e.getMessage());
 		} finally {
 
@@ -121,9 +122,11 @@ public class DBFacade {
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
+			commit();
 			System.out.println(statement);
 			return result;
 		} catch (SQLException e) {
+			rollback();
 			throw new Exception(e);
 		}
 

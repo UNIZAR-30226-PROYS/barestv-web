@@ -76,7 +76,7 @@ public class UsuarioCreateAction extends ActionSupport implements SessionAware {
 				}
 				
 			}
-			if(FactoriaDAO.getUsuarioDAO(C.baseDatos).add(usr)){
+			else if(FactoriaDAO.getUsuarioDAO(C.baseDatos).add(usr)){
 				Establecimiento e = new Establecimiento(usr.getUsuario(),"Establecimiento de "+usr.getUsuario(),"Descripcion de "+usr.getUsuario(),false, 0, 0,"Direccion de "+usr.getUsuario(),"http://cdn1.buuteeq.com/upload/18551/bar-brandy-2.jpg");
 				if (FactoriaDAO.getEstablecimientoDAO(C.baseDatos).add(e)){
 					if (esAdmin){
