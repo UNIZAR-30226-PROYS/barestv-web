@@ -19,7 +19,7 @@
 								<s:property value="#programa.titulo"/>
 							</td>
 							<td>
-								<s:property value="#programa.bar"/>
+								<s:property value="#programa.nombrelargo"/>
 							</td>
 							<td>
 								<s:property value="#programa.inicio" />-<s:property value="#programa.fin"/>
@@ -54,7 +54,7 @@
 								<s:property value="#programa.titulo"/>
 							</td>
 							<td>
-								<s:property value="#programa.bar"/>
+								<s:property value="#programa.nombrelargo"/>
 							</td>
 							<td>
 								<s:property value="#programa.inicio" />-<s:property value="#programa.fin"/>

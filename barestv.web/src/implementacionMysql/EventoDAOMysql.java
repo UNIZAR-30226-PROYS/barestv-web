@@ -31,7 +31,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select * from programa where bar like \""+establecimiento+"\";"; // bar es un acronimo sacarlo de la tabla bar
+			String sql =  "select b.nombre nombre,p.titulo titulo, p.bar bar, p.descr descr, p.destacado destacado, p.inicio inicio, p.fin fin, p.cat cat from programa p,bar b  where p.bar= b.nickbar and bar like \""+establecimiento+"\";"; // bar es un acronimo sacarlo de la tabla bar
 			System.out.println(sql);
 			ResultSet rs = db.ejecutarConsulta(sql);
 			eventos = new ArrayList<Evento>();         
@@ -45,7 +45,7 @@ public class EventoDAOMysql implements EventoInterfazDAO {
 						rs.getBoolean("destacado"),
 						rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
 						);
-			
+				e.setNombrelargo(rs.getString("nombre"));
 				
 				eventos.add(e);
 					
@@ -231,7 +231,9 @@ ArrayList<Evento> eventos = null;
 		try{
 			
 			db.abrirConexion();
-			String sql =  "select * from programa;"; //
+			
+			String sql =  "select b.nombre nombre,p.titulo titulo, p.bar bar, p.descr descr, p.destacado destacado, p.inicio inicio, p.fin fin, p.cat cat from programa p,bar b  where p.bar= b.nickbar;"; // bar es un acronimo sacarlo de la tabla bar
+			
 			System.out.println(sql);
 			ResultSet rs = db.ejecutarConsulta(sql);
 			eventos = new ArrayList<Evento>();         
@@ -246,7 +248,7 @@ ArrayList<Evento> eventos = null;
 						rs.getTimestamp("inicio"),rs.getTimestamp("fin"),rs.getString("cat")
 						);
 			
-				
+				e.setNombrelargo(rs.getString("nombre"));
 				eventos.add(e);
 					
 				

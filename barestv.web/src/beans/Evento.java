@@ -8,7 +8,21 @@ public class Evento {
 	private String bar;
 	private String descr;
 	private Boolean destacado;
+	private String nombrelargo;
 	
+	/**
+	 * @return the nombrelargo
+	 */
+	public String getNombrelargo() {
+		return nombrelargo;
+	}
+	/**
+	 * @param nombrelargo the nombrelargo to set
+	 */
+	public void setNombrelargo(String nombrelargo) {
+		this.nombrelargo = nombrelargo;
+	}
+
 	/* Fecha */
 	private Timestamp inicio;
 	private Timestamp fin;
