@@ -29,7 +29,7 @@
 								<s:property value="#programa.nombrelargo"/>
 							</td>
 							<td>
-								<s:property value="#programa.inicio" />-<s:property value="#programa.fin"/>
+								<s:date name="#programa.inicio" format="dd/MM/yyyy hh:mm" />-<s:date name="#programa.fin" format="hh:mm"/>
 							</td>
 							<td class="boton">
 								<form role="form" method="post" action="<s:url action="nodestacar"/>">
@@ -64,7 +64,7 @@
 								<s:property value="#programa.nombrelargo"/>
 							</td>
 							<td>
-								<s:property value="#programa.inicio" />-<s:property value="#programa.fin"/>
+								<s:date name="#programa.inicio" format="dd/MM/yyyy hh:mm" />-<s:date name="#programa.fin" format="hh:mm"/>
 							</td>
 							<td class="boton">
 								<form role="form" method="post" action="<s:url action="destacar"/>">

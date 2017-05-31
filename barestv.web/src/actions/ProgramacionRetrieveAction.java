@@ -34,6 +34,7 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 	private ArrayList<String> categorias;
 	
 	private String user;	//Atributo para la vista, indica de quien es la programación.
+	private Establecimiento est;
 	
 	public String execute() throws Exception {
 		
@@ -53,7 +54,7 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
             }else{
             	user = u.getUsuario(); // Usuario del cual se saca la programación
             }
-			
+			est = FactoriaDAO.getEstablecimientoDAO(C.baseDatos).get(user);
 			ArrayList<Evento> eventos = FactoriaDAO.getEventoDAO(C.baseDatos).getAll(user);
 			programacion = new HashMap<String,ArrayList<Evento>>();
 			for (Evento evento : eventos) {
@@ -90,11 +91,25 @@ public class ProgramacionRetrieveAction extends ActionSupport implements Session
 	
 	
 
-
+	
 
 
 
 	
+
+	/**
+	 * @return the est
+	 */
+	public Establecimiento getEst() {
+		return est;
+	}
+
+	/**
+	 * @param est the est to set
+	 */
+	public void setEst(Establecimiento est) {
+		this.est = est;
+	}
 
 	/**
 	 * @return the user

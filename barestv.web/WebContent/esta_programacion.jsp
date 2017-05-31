@@ -16,7 +16,10 @@ if(session.getAttribute("usuario")!=null && session.getAttribute("admin")!= null
 	<div class="row">
 		<div class="col-md-12">
 			<h3>
-				Añadir evento a la programación del establecimiento: <s:property value="user"/>
+				Añadir evento a la programación del establecimiento: 
+			</h3>
+			<h3>
+				<s:property value="est.nombre"/>
 			</h3>
 			<form role="form" method="post" action="<s:url action="addEvento"/>">
 				<div class="form-group">
