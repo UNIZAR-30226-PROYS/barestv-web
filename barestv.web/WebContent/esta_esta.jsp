@@ -64,7 +64,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8WhjZxlrqdbxh8k2-gZNxg91
     window.onload = function () { initialize() };
 </script>
 		<h3>
-					Usuario del establecimiento: <span>${est.nickbar}</span>
+					Edita los datos del establecimiento
 				</h3>
 <form role="form" method="post" action="<s:url action="editEstablecimiento"/>">
 	<div class="row">
@@ -88,6 +88,11 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8WhjZxlrqdbxh8k2-gZNxg91
 				<h4>
 					Datos del establecimiento:
 				</h4>
+				<div class="form-group">
+                    <label for="est.nombre">Usuario</label>
+					<s:textfield cssClass="form-control"  type="text" value="%{est.nickbar}" readonly="true"/>
+				</div>
+				
 				<div class="form-group">
                     <label for="est.nombre">Nombre</label>
 					<s:textfield cssClass="form-control" id="est.nombre" name="est.nombre" type="text" value="%{est.nombre}"/>
