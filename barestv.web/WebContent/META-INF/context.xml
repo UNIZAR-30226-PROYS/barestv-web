@@ -1,41 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
-   
-	 <!-- Local Database -->
-	 <!--
-	<Resource name="gdosteamio"
-	 auth="Container" type="javax.sql.DataSource" 
-	 maxActive="20" maxIdle="10" maxWait="5000" 
-	 username="root" password="" 
-	 driverClassName="com.mysql.jdbc.Driver" 
-	 url="jdbc:mysql://localhost:3306/gdosteamio"/>
-	 -->
-	  
-	  <!-- Cloudbees Database -->
-	  <!--
-	<Resource name="gdosteamio"
-	 auth="Container" type="javax.sql.DataSource" 
-	 maxActive="20" maxIdle="10" maxWait="5000" 
-	 username="b76d8d1d643614" password="e0d3cbf9" 
-	 driverClassName="com.mysql.jdbc.Driver" 
-	 url="jdbc:mysql://us-cdbr-cb-east-01.cleardb.net:3306/cb_proyectofp"/>
-	   -->
-	   
-	    <!-- Cloudbees Database -->
-	  <!--  
-	<Resource name="heliohost"
-	 auth="Container" type="javax.sql.DataSource" 
-	 maxActive="20" maxIdle="10" maxWait="5000" 
-	 username="barestv_nacho" password="123456" 
-	 driverClassName="com.mysql.jdbc.Driver" 
-	 url="jdbc:mysql://johnny.heliohost.org:3306/barestv_mysql"/>
-	  --> 
-	  <!--  Host amazon -->
-	  <Resource name="local"
-	 auth="Container" type="javax.sql.DataSource" 
-	 maxActive="20" maxIdle="10" maxWait="5000" 
-	 username="tmj0dzwkh4vehpmz" password="w03mq6w1axo73dth" 
-	 driverClassName="com.mysql.jdbc.Driver" 
-	 url="jdbc:mysql://hngomrlb3vfq3jcr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nf0n21jv2up9wz1b"/>
+   <Resource name="local"
+   auth="Container" type="javax.sql.DataSource" 
+   maxActive="20" maxIdle="10" maxWait="5000" 
+   username="apirest" password="apirest" 
+   driverClassName="com.mysql.jdbc.Driver" 
+   url="jdbc:mysql://localhost:3306/nf0n21jv2up9wz1b"/>
+	
 </Context>
