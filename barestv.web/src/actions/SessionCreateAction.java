@@ -52,8 +52,12 @@ public class SessionCreateAction extends ActionSupport implements SessionAware {
 	
 	//Para procesar lo que se tiene que hacer con el formulario de logeo
 	public String execute() throws Exception {
-		Usuario u = FactoriaDAO.getUsuarioDAO(C.baseDatos).get(usuario,password);
-		
+		Usuario u ;
+		try{
+		u = FactoriaDAO.getUsuarioDAO(C.baseDatos).get(usuario,password);
+		}catch(Exception re){
+			return "error";
+		}
 		if (u == null){
 			addActionError("Usuario o password invalidos.");
 			return "fail";
